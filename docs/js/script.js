@@ -1,44 +1,11 @@
 let productos = [];
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-/*document.addEventListener('DOMContentLoaded', async () => {
-  productos = await cargarProductos();
-  mostrarProductos(productos);
-  actualizarCarrito();
-});*/
-
 document.addEventListener('DOMContentLoaded', async () => {
   productos = await cargarProductos(); // ahora sí asigna correctamente
   mostrarProductos(productos);
   actualizarCarrito();
 });
-
-/*async function cargarProductos() {
-  const res = await fetch('data/productos.json');
-  return await res.json();
-}*/
-
-/*async function cargarProductos() {
-  try {
-    const respuesta = await fetch("./data/productos.json");
-    const productos = await respuesta.json();
-
-    const catalogo = document.getElementById("catalogo");
-    catalogo.innerHTML = "";
-
-    productos.forEach(p => {
-      const card = document.createElement("div");
-      card.classList.add("producto");
-      card.innerHTML = `
-        <h3>${p.nombre}</h3>
-        <p>Precio: $${p.precio}</p>
-      `;
-      catalogo.appendChild(card);
-    });
-  } catch (error) {
-    console.error("Error cargando productos:", error);
-  }
-}*/
 
 async function cargarProductos() {
   try {
@@ -146,15 +113,12 @@ document.getElementById('form-datos').addEventListener('submit', async function 
   const datos = {};
   formData.forEach((valor, clave) => datos[clave] = valor);
 
-  const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-
   if (carrito.length === 0) {
     alert("Tu carrito está vacío.");
     return;
   }
 
   let mensaje = `¡Hola! Quiero realizar un pedido:\n\n`;
-
   carrito.forEach(item => {
     mensaje += `- ${item.nombre} x${item.cantidad} ($${item.subtotal})\n`;
   });
@@ -170,38 +134,45 @@ document.getElementById('form-datos').addEventListener('submit', async function 
   mensaje += `Método de envío: ${datos.envio}\n`;
   mensaje += `Recibe: ${datos.recibe}\n`;
   mensaje += `Método de pago: ${datos.pago}\n`;
-  mensaje += `¿Autoriza publicación del pedido?: ${datos.publicidad}\n`;
+  mensaje += `¿Autoriza publicación?: ${datos.publicidad}\n`;
   mensaje += `¿Factura C?: ${datos.factura}\n`;
 
-  // 🔁 Descontar stock en el backend
-/*  try {
-    const respuesta = await fetch('/api/actualizar-stock', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(carrito)
-    });
+  // 📲 Abrir WhatsApp
+  const telefonoVendedor = '5491126116298';
+  const urlWhatsapp = `https://wa.me/${telefonoVendedor}?text=${encodeURIComponent(mensaje)}`;
+  window.open(urlWhatsapp, '_blank');
 
-    if (!respuesta.ok) {
-      alert('Error al actualizar stock. Intenta de nuevo.');
-      return;
-    }
-  } catch (error) {
-    alert('Error de conexión con el servidor.');
-    return;
-  }*/
+  // 🔄 Resetear carrito y productos
+  localStorage.removeItem('carrito');  // limpiar localStorage
+  carrito = [];                        // limpiar array en memoria
+  actualizarCarrito();                 // refrescar vista
 
-  // 🔄 Resetear carrito
-  localStorage.removeItem('carrito');
-  if (typeof actualizarCarrito === 'function') actualizarCarrito();
+  // 🔄 Recargar productos si corresponde
   if (typeof cargarProductos === 'function') productos = await cargarProductos();
   if (typeof mostrarProductos === 'function') mostrarProductos(productos);
 
-  // 📲 Redireccionar a WhatsApp
-  const telefonoVendedor = '5491126116298'; // tu número
-  const urlWhatsapp = `https://wa.me/${telefonoVendedor}?text=${encodeURIComponent(mensaje)}`;
-  window.open(urlWhatsapp, '_blank');
-});
+  // ✅ Mostrar mensaje de agradecimiento
+  const contenedor = document.getElementById('form-datos').parentElement;
+  let mensajeConfirmacion = document.getElementById("mensaje-confirmacion");
 
+  if (!mensajeConfirmacion) {
+    mensajeConfirmacion = document.createElement('p');
+    mensajeConfirmacion.id = "mensaje-confirmacion";
+    mensajeConfirmacion.style.fontWeight = 'bold';
+    mensajeConfirmacion.style.color = '#e8499a';
+    contenedor.appendChild(mensajeConfirmacion);
+  }
+
+  mensajeConfirmacion.textContent = '¡Gracias por tu pedido! Muy pronto nos pondremos en contacto.';
+
+  // 🕒 Ocultarlo después de 10 segundos
+  setTimeout(() => {
+    mensajeConfirmacion.textContent = '';
+  }, 10000);
+
+  // Resetear el formulario de cliente
+  this.reset();
+});
 
 function cambiarCantidad(id, cambio) {
   const producto = productos.find(p => p.id === id);
@@ -392,8 +363,8 @@ document.getElementById('form-datos').reset();
 document.getElementById('form-datos').style.display = true;
 
 const contenedor = document.getElementById('form-datos').parentElement;
-const mensajeConfirmacion = document.createElement('p');
-mensajeConfirmacion.textContent = '¡Gracias por tu pedido! Abrimos WhatsApp para confirmar.';
+/*const mensajeConfirmacion = document.createElement('p');
+mensajeConfirmacion.textContent = '¡Gracias por tu pedido! Muy pronto nos pondremos en contacto.';
 mensajeConfirmacion.style.fontWeight = 'bold';
 mensajeConfirmacion.style.color = '#e8499a';
-contenedor.appendChild(mensajeConfirmacion);
+contenedor.appendChild(mensajeConfirmacion);*/
