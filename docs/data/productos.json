@@ -1,57 +1,31 @@
 [
   {
-    "id": "P001",
-    "nombre": "Cuaderno Personalizado",
-    "categoria": "Personalizados",
-    "precio": 2000,
-    "stock": 11,
-    "imagen": "img/cuaderno_personalizado.png",
-    "imagenes": [
-    "img/sakura-1.jpg",
-    "img/sakura-2.jpg",
-    "img/sakura-3.jpg"
-    ],
-    "descripcion": "Cuaderno artesanal con diseño inspirado en Sakura Card Captor. Ideal para notas, diarios o uso escolar.",
-    "variaciones": [
-    {
-      "id": "rosa",
-      "nombre": "Rosa",
-      "imagen": "img/sakura-rosa.jpg",
-      "stock": 5
-    },
-    {
-      "id": "celeste",
-      "nombre": "Celeste",
-      "imagen": "img/sakura-celeste.jpg",
-      "stock": 5
-    }
-    ]
-  },
-  {
     "id": "P002",
     "nombre": "Charm Personalizado",
     "categoria": "Personalizados",
-    "precio": 1500,
+    "precio": 2500,
     "stock": 10,
     "imagen": "img/charm_personalizado.png",
     "imagenes": [
-    "img/sakura-1.jpg",
+    "img/charm_genshin.jpeg",
     "img/sakura-2.jpg",
     "img/sakura-3.jpg"
     ],
     "descripcion": "Cuaderno artesanal con diseño inspirado en Sakura Card Captor. Ideal para notas, diarios o uso escolar.",
     "variaciones": [
     {
-      "id": "rosa",
-      "nombre": "Rosa",
-      "imagen": "img/sakura-rosa.jpg",
-      "stock": 5
+      "id": "x5 unidades",
+      "nombre": "x5 unidades",
+      "imagen": "img/charm_personalizado.png",
+      "stock": 5,
+      "precio": 2500
     },
     {
-      "id": "celeste",
-      "nombre": "Celeste",
-      "imagen": "img/sakura-celeste.jpg",
-      "stock": 5
+      "id": "x10 unidades",
+      "nombre": "x10 unidades",
+      "imagen": "img/charm_personalizado.png",
+      "stock": 5,
+      "precio": 3500
     }
     ]
   },
@@ -72,13 +46,13 @@
     {
       "id": "rosa",
       "nombre": "Rosa",
-      "imagen": "img/sakura-rosa.jpg",
+      "imagen": "img/llavero_personalizado.png",
       "stock": 5
     },
     {
       "id": "celeste",
       "nombre": "Celeste",
-      "imagen": "img/sakura-celeste.jpg",
+      "imagen": "img/llavero_personalizado.png",
       "stock": 5
     }
     ]
@@ -100,13 +74,13 @@
     {
       "id": "rosa",
       "nombre": "Rosa",
-      "imagen": "img/sakura-rosa.jpg",
+      "imagen": "img/standee_personalizado.jpeg",
       "stock": 5
     },
     {
       "id": "celeste",
       "nombre": "Celeste",
-      "imagen": "img/sakura-celeste.jpg",
+      "imagen": "img/standee_personalizado.jpeg",
       "stock": 5
     }
     ]
@@ -128,13 +102,13 @@
     {
       "id": "rosa",
       "nombre": "Rosa",
-      "imagen": "img/sakura-rosa.jpg",
+      "imagen": "img/anotador personalizado.png",
       "stock": 5
     },
     {
       "id": "celeste",
       "nombre": "Celeste",
-      "imagen": "img/sakura-celeste.jpg",
+      "imagen": "img/anotador personalizado.png",
       "stock": 5
     }
     ]
@@ -156,13 +130,13 @@
     {
       "id": "rosa",
       "nombre": "Rosa",
-      "imagen": "img/sakura-rosa.jpg",
+      "imagen": "img/blocknotaspersonalizados.jpg",
       "stock": 5
     },
     {
       "id": "celeste",
       "nombre": "Celeste",
-      "imagen": "img/sakura-celeste.jpg",
+      "imagen": "img/blocknotaspersonalizados.jpg",
       "stock": 5
     }
     ]

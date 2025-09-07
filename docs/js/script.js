@@ -2,7 +2,7 @@ let productos = [];
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
 document.addEventListener('DOMContentLoaded', async () => {
-  productos = await cargarProductos(); // ahora sí asigna correctamente
+  productos = await cargarProductos();
   mostrarProductos(productos);
   actualizarCarrito();
 });
@@ -26,17 +26,16 @@ function mostrarProductos(listaProductos) {
     const div = document.createElement('div');
     div.className = 'producto';
     div.innerHTML = `
-       <img src="${producto.imagen}" alt="${producto.nombre}" onclick="mostrarDetalle('${producto.id}')">
+      <img src="${producto.imagen}" alt="${producto.nombre}" onclick="mostrarDetalle('${producto.id}')">
       <h2>${producto.nombre}</h2>
       <p>Precio: $${producto.precio}</p>
       <p>3 cuotas de $${(producto.precio/3).toFixed(2)}</p>
-      <input type="number" id="cantidad-${producto.id}" value="1" min="1" max="${producto.stock}">
-      <button onclick="agregarAlCarrito('${producto.id}')">Agregar</button>
+      <button onclick="mostrarDetalle('${producto.id}')">Ver más</button>
     `;
 
+    // Si no hay stock, deshabilitar el botón
     if (producto.stock <= 0) {
       div.querySelector("button").disabled = true;
-      div.querySelector("input").disabled = true;
       div.querySelector("button").textContent = "Sin stock";
     }
 
@@ -44,28 +43,58 @@ function mostrarProductos(listaProductos) {
   });
 }
 
+// Cambia la función agregarAlCarrito para aceptar cantidadManual
+function agregarAlCarrito(id, cantidadManual, variacionId = null) {
+  let producto = productos.find(p => p.id === id);
+  let nombre = producto.nombre;
+  let precio = producto.precio;
+  let stock = producto.stock;
+  let idCarrito = id;
 
-function agregarAlCarrito(id) {
-  const producto = productos.find(p => p.id === id);
-  const cantidad = parseInt(document.getElementById('cantidad-' + id).value);
+  // Si hay variación, ajusta los datos
+  if (variacionId && producto.variaciones && producto.variaciones.length > 0) {
+    const variacion = producto.variaciones.find(v => v.id === variacionId);
+    if (variacion) {
+      nombre += ` (${variacion.nombre})`;
+      stock = variacion.stock;
+      idCarrito = `${id}-${variacionId}`;
+      // Usa el precio de la variación si existe
+      if (variacion.precio) precio = variacion.precio;
+    }
+  }
+
+  // Si viene cantidadManual úsala, si no, toma la del input del catálogo
+  let cantidad = cantidadManual !== undefined
+    ? cantidadManual
+    : parseInt(document.getElementById('cantidad-' + id).value);
 
   if (!producto || cantidad <= 0 || isNaN(cantidad)) {
     alert("Cantidad inválida o producto no encontrado");
     return;
   }
 
-  const productoExistente = carrito.find(item => item.id === id);
+  // Busca por idCarrito (id+variacion)
+  const productoExistente = carrito.find(item => item.id === idCarrito);
 
   if (productoExistente) {
+    if (productoExistente.cantidad + cantidad > stock) {
+      alert('No hay suficiente stock disponible');
+      return;
+    }
     productoExistente.cantidad += cantidad;
-    productoExistente.subtotal += producto.precio * cantidad;
+    productoExistente.precio = precio; // Actualiza el precio por si cambió
+    productoExistente.subtotal = productoExistente.cantidad * precio;
   } else {
+    if (cantidad > stock) {
+      alert('No hay suficiente stock disponible');
+      return;
+    }
     carrito.push({
-      id: producto.id,
-      nombre: producto.nombre,
-      precio: producto.precio,
+      id: idCarrito,
+      nombre: nombre,
+      precio: precio,
       cantidad: cantidad,
-      subtotal: producto.precio * cantidad
+      subtotal: precio * cantidad
     });
   }
 
@@ -175,21 +204,39 @@ document.getElementById('form-datos').addEventListener('submit', async function 
 });
 
 function cambiarCantidad(id, cambio) {
-  const producto = productos.find(p => p.id === id);
+  // Soporta ids con variación: "P002-rosa"
+  let baseId = id;
+  let variacionId = null;
+  if (id.includes('-')) {
+    [baseId, variacionId] = id.split('-');
+  }
+
+  const producto = productos.find(p => p.id === baseId);
   const item = carrito.find(p => p.id === id);
 
   if (!producto || !item) return;
 
+  let stock = producto.stock;
+  let precio = producto.precio;
+  if (variacionId && producto.variaciones && producto.variaciones.length > 0) {
+    const variacion = producto.variaciones.find(v => v.id === variacionId);
+    if (variacion) {
+      stock = variacion.stock;
+      if (variacion.precio) precio = variacion.precio;
+    }
+  }
+
   const nuevaCantidad = item.cantidad + cambio;
 
   if (nuevaCantidad < 1) return;
-  if (nuevaCantidad > producto.stock) {
+  if (nuevaCantidad > stock) {
     alert('No hay suficiente stock disponible');
     return;
   }
 
   item.cantidad = nuevaCantidad;
-  item.subtotal = item.precio * nuevaCantidad;
+  item.precio = precio; // Asegura que el precio sea el correcto para la variante
+  item.subtotal = precio * nuevaCantidad;
 
   guardarCarrito();
   actualizarCarrito();
@@ -243,7 +290,20 @@ function mostrarDetalle(id) {
 
   const contenedor = document.getElementById('detalle-producto');
 
-  const imagenesExtra = producto.imagenes?.map(src => `<img src="${src}" alt="extra">`).join('') || '';
+  // Si hay variaciones, usar la primera como seleccionada por defecto
+  let imagenPrincipal = producto.imagen;
+  let imagenesExtra = '';
+  let variacionInicial = null;
+  let precioMostrar = producto.precio;
+
+  if (producto.variaciones && producto.variaciones.length > 0) {
+    variacionInicial = producto.variaciones[0];
+    imagenPrincipal = variacionInicial.imagen || producto.imagen;
+    imagenesExtra = variacionInicial.imagenes?.map(src => `<img src="${src}" alt="extra">`).join('') || '';
+    precioMostrar = variacionInicial.precio || producto.precio;
+  } else {
+    imagenesExtra = producto.imagenes?.map(src => `<img src="${src}" alt="extra">`).join('') || '';
+  }
 
   const selectorVariaciones = producto.variaciones
     ? `
@@ -256,13 +316,13 @@ function mostrarDetalle(id) {
 
   contenedor.innerHTML = `
     <h2>${producto.nombre}</h2>
-    <img id="img-detalle-${producto.id}" src="${producto.imagen}" alt="${producto.nombre}">
-    <p>Precio: $${producto.precio}</p>
+    <img id="img-detalle-${producto.id}" src="${imagenPrincipal}" alt="${producto.nombre}">
+    <p id="precio-detalle-${producto.id}">Precio: $${precioMostrar}</p>
     ${selectorVariaciones}
-    <p id="stock-detalle-${producto.id}">Stock: ${producto.stock}</p>
+    <p id="stock-detalle-${producto.id}">Stock: ${variacionInicial ? variacionInicial.stock : producto.stock}</p>
     <p>${producto.descripcion || ''}</p>
-    <div>${imagenesExtra}</div>
-    <input type="number" id="detalle-cantidad-${producto.id}" value="1" min="1" max="${producto.stock}">
+    <div id="imagenes-extra-detalle">${imagenesExtra}</div>
+    <input type="number" id="detalle-cantidad-${producto.id}" value="1" min="1" max="${variacionInicial ? variacionInicial.stock : producto.stock}">
     <button onclick="agregarDesdeDetalle('${producto.id}')">Agregar al carrito</button>
   `;
 
@@ -273,75 +333,7 @@ function mostrarDetalle(id) {
   }
 }
 
-async function agregarDesdeDetalle(id) {
-  const producto = productos.find(p => p.id === id);
-  if (!producto) return;
-
-  const cantidad = parseInt(document.getElementById(`detalle-cantidad-${id}`).value);
-  if (cantidad <= 0 || isNaN(cantidad)) return;
-
-  let variacionSeleccionada = null;
-  let nombreFinal = producto.nombre;
-  let variacionId = null;
-
-  if (producto.variaciones) {
-    variacionId = document.getElementById(`variacion-${id}`).value;
-    variacionSeleccionada = producto.variaciones.find(v => v.id === variacionId);
-    if (!variacionSeleccionada || cantidad > variacionSeleccionada.stock) {
-      alert("No hay suficiente stock para esa variación.");
-      return;
-    }
-    nombreFinal += ` (${variacionSeleccionada.nombre})`;
-  } else if (cantidad > producto.stock) {
-    alert("No hay suficiente stock.");
-    return;
-  }
-
-  // Descontar stock en el backend
-  try {
-    await fetch('http://localhost:3000/api/restar-stock', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        id: producto.id,
-        variacionId: variacionId,
-        cantidad: cantidad
-      })
-    });
-  } catch (err) {
-    alert("Error al actualizar stock");
-    return;
-  }
-
-  const itemId = variacionId ? `${id}-${variacionId}` : id;
-  const existente = carrito.find(item => item.id === itemId);
-
-  if (existente) {
-    existente.cantidad += cantidad;
-    existente.subtotal += producto.precio * cantidad;
-  } else {
-    carrito.push({
-      id: itemId,
-      nombre: nombreFinal,
-      precio: producto.precio,
-      cantidad: cantidad,
-      subtotal: producto.precio * cantidad
-    });
-  }
-
-  guardarCarrito();
-  actualizarCarrito();
-  mostrarAlerta();
-  cerrarDetalle();
-
-  // Actualizar los datos del producto en memoria
-  await obtenerProductos();
-}
-
-function cerrarDetalle() {
-  document.getElementById('modal-detalle').style.display = 'none';
-}
-
+// Modifica también actualizarStockVariacion para actualizar las imágenes extra:
 function actualizarStockVariacion(productoId) {
   const producto = productos.find(p => p.id === productoId);
   const select = document.getElementById(`variacion-${productoId}`);
@@ -351,10 +343,17 @@ function actualizarStockVariacion(productoId) {
   document.getElementById(`stock-detalle-${productoId}`).innerText = `Stock: ${variacion.stock}`;
   document.getElementById(`detalle-cantidad-${productoId}`).max = variacion.stock;
   document.getElementById(`img-detalle-${productoId}`).src = variacion.imagen || producto.imagen;
+
+  // Actualiza el precio mostrado
+  document.getElementById(`precio-detalle-${productoId}`).innerText = `Precio: $${variacion.precio || producto.precio}`;
+
+  // Actualizar imágenes extra si existen en la variación
+  const imagenesExtra = variacion.imagenes?.map(src => `<img src="${src}" alt="extra">`).join('') || '';
+  document.getElementById('imagenes-extra-detalle').innerHTML = imagenesExtra;
 }
 
 async function obtenerProductos() {
-  const res = await fetch('http://localhost:3000/productos.json');
+  const res = await fetch('./data/productos.json');
   productos = await res.json();
 }
 
@@ -368,3 +367,40 @@ mensajeConfirmacion.textContent = '¡Gracias por tu pedido! Muy pronto nos pondr
 mensajeConfirmacion.style.fontWeight = 'bold';
 mensajeConfirmacion.style.color = '#e8499a';
 contenedor.appendChild(mensajeConfirmacion);*/
+
+// AGREGA ESTA FUNCIÓN PARA CERRAR EL MODAL DETALLE
+function cerrarDetalle() {
+  document.getElementById('modal-detalle').style.display = 'none';
+}
+
+// AGREGA ESTA FUNCIÓN PARA AGREGAR DESDE EL DETALLE
+function agregarDesdeDetalle(id) {
+  const producto = productos.find(p => p.id === id);
+  if (!producto) return;
+
+  let cantidad = 1;
+  let stock = producto.stock;
+  let variacionId = null;
+
+  // Si hay variaciones, toma la seleccionada
+  if (producto.variaciones && producto.variaciones.length > 0) {
+    const select = document.getElementById(`variacion-${producto.id}`);
+    if (select) {
+      variacionId = select.value;
+      const variacion = producto.variaciones.find(v => v.id === variacionId);
+      if (variacion) stock = variacion.stock;
+    }
+  }
+
+  const inputCantidad = document.getElementById(`detalle-cantidad-${producto.id}`);
+  if (inputCantidad) {
+    cantidad = parseInt(inputCantidad.value);
+    if (isNaN(cantidad) || cantidad < 1) cantidad = 1;
+    if (cantidad > stock) cantidad = stock;
+    // Resetea el input a 1 después de agregar
+    inputCantidad.value = 1;
+  }
+
+  agregarAlCarrito(id, cantidad, variacionId);
+  cerrarDetalle();
+}
