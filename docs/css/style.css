@@ -165,7 +165,7 @@ body {
   }*/
 
   .modal-contenido img {
-  max-width: 100%;
+  max-width: 50%;
   margin: 5px 0;
   }
 
@@ -292,8 +292,7 @@ body {
     margin-top: 8px;
   }
 
-  /* --- Responsive para modales y carrito --- */
-@media (max-width: 720px) {
+
   .modal-contenido {
     width: 98vw;
     max-width: 99vw;
