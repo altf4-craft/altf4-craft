@@ -140,5 +140,187 @@
       "stock": 5
     }
     ]
+  },
+  {
+    "id": "P007",
+    "nombre": "Stickers Personalizado",
+    "categoria": "Stickers",
+    "precio": 800,
+    "stock": 20,
+    "imagen": "img/stickers.jpeg",
+    "imagenes": [
+      "img/sticker1.jpg",
+      "img/sticker2.jpg",
+      "img/sticker3.jpg"
+    ],
+    "descripcion": "Pack de stickers personalizados en vinilo resistente al agua. Ideales para decorar notebooks, celulares y más.",
+    "variaciones": [
+      {
+        "id": "mini",
+        "nombre": "Mini (5x5cm)",
+        "imagen": "img/stickers.jpeg",
+        "stock": 10,
+        "precio": 800
+      },
+      {
+        "id": "grande",
+        "nombre": "Grande (10x10cm)",
+        "imagen": "img/stickers.jpeg",
+        "stock": 10,
+        "precio": 1200
+      }
+    ]
+  },
+  {
+    "id": "P008",
+    "nombre": "Marcapaginas imantado Personalizada",
+    "categoria": "Tazas",
+    "precio": 3500,
+    "stock": 8,
+    "imagen": "img/marcapaginas_imantado.jpg",
+    "imagenes": [
+      "img/taza1.jpg",
+      "img/taza2.jpg"
+    ],
+    "descripcion": "Taza de cerámica personalizada con tu diseño favorito. Apta para microondas y lavavajillas.",
+    "variaciones": [
+      {
+        "id": "blanca",
+        "nombre": "Blanca",
+        "imagen": "img/marcapaginas_imantado.jpg",
+        "stock": 4,
+        "precio": 3500
+      },
+      {
+        "id": "magica",
+        "nombre": "Mágica (cambia color)",
+        "imagen": "img/marcapaginas_imantado.jpg",
+        "stock": 4,
+        "precio": 4200
+      }
+    ]
+  },
+  {
+    "id": "P009",
+    "nombre": "Marcapaginas común Personalizado",
+    "categoria": "Accesorios",
+    "precio": 2200,
+    "stock": 12,
+    "imagen": "img/marcapaginas_comun.jpeg",
+    "imagenes": [
+      "img/mousepad1.jpg",
+      "img/mousepad2.jpg"
+    ],
+    "descripcion": "Mousepad de tela con base antideslizante y diseño personalizado.",
+    "variaciones": [
+      {
+        "id": "redondo",
+        "nombre": "Redondo",
+        "imagen": "img/marcapaginas_comun.jpeg",
+        "stock": 6,
+        "precio": 2200
+      },
+      {
+        "id": "rectangular",
+        "nombre": "Rectangular",
+        "imagen": "img/marcapaginas_comun.jpeg",
+        "stock": 6,
+        "precio": 2500
+      }
+    ]
+  },
+  {
+    "id": "P010",
+    "nombre": "Polaroids Personalizada",
+    "categoria": "Indumentaria",
+    "precio": 5000,
+    "stock": 15,
+    "imagen": "img/polaroids.jpeg",
+    "imagenes": [
+      "img/remera1.jpg",
+      "img/remera2.jpg"
+    ],
+    "descripcion": "Remera de algodón personalizada con tu diseño. Disponible en varios talles y colores.",
+    "variaciones": [
+      {
+        "id": "s",
+        "nombre": "Talle S",
+        "imagen": "img/polaroids.jpeg",
+        "stock": 5,
+        "precio": 5000
+      },
+      {
+        "id": "m",
+        "nombre": "Talle M",
+        "imagen": "img/polaroids.jpeg",
+        "stock": 5,
+        "precio": 5000
+      },
+      {
+        "id": "l",
+        "nombre": "Talle L",
+        "imagen": "img/polaroids.jpeg",
+        "stock": 5,
+        "precio": 5000
+      }
+    ]
+  },
+  {
+    "id": "P011",
+    "nombre": "Prints Personalizada",
+    "categoria": "Accesorios",
+    "precio": 3200,
+    "stock": 10,
+    "imagen": "img/prints.jpeg",
+    "imagenes": [
+      "img/botella1.jpg",
+      "img/botella2.jpg"
+    ],
+    "descripcion": "Botella de aluminio personalizada, ideal para llevar a todos lados.",
+    "variaciones": [
+      {
+        "id": "negra",
+        "nombre": "Negra",
+        "imagen": "img/prints.jpeg",
+        "stock": 5,
+        "precio": 3200
+      },
+      {
+        "id": "blanca",
+        "nombre": "Blanca",
+        "imagen": "img/prints.jpeg",
+        "stock": 5,
+        "precio": 3200
+      }
+    ]
+  },
+  {
+    "id": "P012",
+    "nombre": "Photocards Personalizado",
+    "categoria": "Papelería",
+    "precio": 1800,
+    "stock": 14,
+    "imagen": "img/cuaderno_personalizado.jpg",
+    "imagenes": [
+      "img/cuaderno1.jpg",
+      "img/cuaderno2.jpg"
+    ],
+    "descripcion": "Cuaderno artesanal con tapa personalizada. 80 hojas rayadas.",
+    "variaciones": [
+      {
+        "id": "a5",
+        "nombre": "Tamaño A5",
+        "imagen": "img/cuaderno_personalizado.jpg",
+        "stock": 7,
+        "precio": 1800
+      },
+      {
+        "id": "a4",
+        "nombre": "Tamaño A4",
+        "imagen": "img/cuaderno_a4.jpg",
+        "stock": 7,
+        "precio": 2500
+      }
+    ]
   }
 ]

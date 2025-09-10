@@ -37,80 +37,81 @@
   <div id="catalogo" class="catalogo"></div>
 
   <!-- Modal del Carrito -->
-  <div id="modal-carrito" class="modal">
-    <div class="modal-contenido">
-      <span class="cerrar" onclick="cerrarModal()">&times;</span>
-      <h2>Carrito</h2>
-      <ul id="lista-carrito"></ul>
-      <p id="total">Total: $0</p>
-      <!-- formulario-datos.html (o incluí este código en tu index.html antes del botón de enviar por WhatsApp) -->
-      <section id="formulario-cliente">
-        <h2>Datos del cliente</h2>
-        <form id="form-datos" style="display: flex; flex-wrap: wrap; gap: 10px;">
-  <div>
-    <label>Nombre completo</label>
-    <input name="nombre" placeholder="Ej: Alison Pérez" required>
-  </div>
+  
+    <div id="modal-carrito" class="modal">
+      <div class="modal-contenido">
+        <span class="cerrar" onclick="cerrarModal()">&times;</span>
+        <h2>Carrito</h2>
+        <ul id="lista-carrito"></ul>
+        <p id="total">Total: $0</p>
+        <!-- formulario-datos.html (o incluí este código en tu index.html antes del botón de enviar por WhatsApp) -->
+        <section id="formulario-cliente">
+          <h2>Datos del cliente</h2>
+          <form id="form-datos" style="display: flex; flex-wrap: wrap; gap: 10px;">
+            <div>
+            <label>Nombre completo</label>
+            <input name="nombre" placeholder="Ej: Alison Pérez" required>
+            </div>
 
-  <div>
-    <label>DNI</label>
-    <input name="dni" placeholder="Ej: 30111222" required>
-  </div>
+            <div>
+            <label>DNI</label>
+            <input name="dni" placeholder="Ej: 30111222" required>
+            </div>
 
-  <div>
-    <label>Email</label>
-    <input name="email" type="email" placeholder="Ej: alison@email.com" required>
-  </div>
+            <div>
+            <label>Email</label>
+            <input name="email" type="email" placeholder="Ej: alison@email.com" required>
+            </div>
 
-  <div>
-    <label>Celular</label>
-    <input name="celular" placeholder="Ej: 1155552222" required>
-  </div>
+            <div>
+            <label>Celular</label>
+            <input name="celular" placeholder="Ej: 1155552222" required>
+            </div>
 
-  <div>
-    <label>Método de envío</label>
-    <select name="envio" required>
-      <option value="Punto de retiro">Punto de retiro</option>
-      <option value="Envío por correo">Envío por correo</option>
-    </select>
-  </div>
+            <div>
+            <label>Método de envío</label>
+            <select name="envio" required>
+              <option value="Punto de retiro">Punto de retiro</option>
+              <option value="Envío por correo">Envío por correo</option>
+            </select>
+            </div>
 
-  <div>
-    <label>¿Quién recibe?</label>
-    <input name="recibe" placeholder="Ej: Tu nombre o el de alguien más" required>
-  </div>
+            <div>
+            <label>¿Quién recibe?</label>
+            <input name="recibe" placeholder="Ej: Tu nombre o el de alguien más" required>
+            </div>
 
-  <div>
-    <label>Método de pago</label>
-    <select name="pago" required>
-      <option value="Transferencia">Transferencia</option>
-      <option value="Link de pago">Link de pago</option>
-    </select>
-  </div>
+            <div>
+            <label>Método de pago</label>
+            <select name="pago" required>
+              <option value="Transferencia">Transferencia</option>
+              <option value="Link de pago">Link de pago</option>
+            </select>
+            </div>
 
-  <div>
-    <label>¿Autoriza publicación?</label>
-    <select name="publicidad" required>
-      <option value="Sí">Sí</option>
-      <option value="No">No</option>
-    </select>
-  </div>
+            <div>
+            <label>¿Autoriza publicación?</label>
+            <select name="publicidad" required>
+              <option value="Sí">Sí</option>
+              <option value="No">No</option>
+            </select>
+            </div>
 
-  <div>
-    <label>¿Factura C?</label>
-    <select name="factura" required>
-      <option value="Sí">Sí</option>
-      <option value="No">No</option>
-    </select>
-  </div>
+            <div>
+            <label>¿Factura C?</label>
+            <select name="factura" required>
+              <option value="Sí">Sí</option>
+              <option value="No">No</option>
+            </select>
+            </div>
 
-  <button type="submit">Enviar pedido por WhatsApp</button>
-</form>
+            <button type="submit">Enviar pedido por WhatsApp</button>
+          </form>
 
-
-      </section>
-    </div>
-  </div> 
+        </section>
+      </div>
+    </div> 
+ 
 
   <div id="alerta" class="alerta" style="display: none;">Producto agregado!</div>
 
