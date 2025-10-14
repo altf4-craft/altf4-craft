@@ -334,13 +334,40 @@ function mostrarDetalle(id) {
 
   const contenedor = document.getElementById('detalle-producto');
 
-  // Si hay variaciones, usar la primera como seleccionada por defecto
+  // Prepara el array de imágenes (principal + extras, sin repetir)
+  let imagenes = [];
+  if (producto.imagen) imagenes.push(producto.imagen);
+  if (producto.imagenes && producto.imagenes.length > 0) {
+    producto.imagenes.forEach(src => {
+      if (!imagenes.includes(src)) imagenes.push(src);
+    });
+  }
+
+  // Estado del carrusel
+  let indiceActual = 0;
+
+  // Función para renderizar la imagen y flechas
+  function renderCarrusel() {
+    let flechaIzq = '';
+    let flechaDer = '';
+    if (imagenes.length > 1) {
+      flechaIzq = `<span id="flecha-izq" style="cursor:pointer;font-size:2em;margin-right:10px;">&#8592;</span>`;
+      flechaDer = `<span id="flecha-der" style="cursor:pointer;font-size:2em;margin-left:10px;">&#8594;</span>`;
+    }
+    return `
+      <div style="display:flex;align-items:center;justify-content:center;">
+        ${flechaIzq}
+        <img id="img-carrusel-modal" src="${imagenes[indiceActual]}" alt="extra" style="max-width:320px;max-height:320px;object-fit:contain;display:block;">
+        ${flechaDer}
+      </div>
+    `;
+  }
+
+  // Selector de variantes (igual que antes)
   let variaciones = producto.variaciones || [];
   let variacionInicial = variaciones[0] || null;
   let precioMostrar = variacionInicial ? variacionInicial.precio : producto.precio;
   let stockMostrar = variacionInicial ? (variacionInicial.stock || variacionInicial.Stock) : producto.stock;
-
-  // Selector de variantes por nombre
   let selectorVariaciones = '';
   if (variaciones.length > 0) {
     selectorVariaciones = `
@@ -354,8 +381,8 @@ function mostrarDetalle(id) {
   contenedor.innerHTML = `
     <h2>${producto.nombre}</h2>
     <div class="detalle-flex">
-      <div class="carrusel-imagen">
-        <img id="img-detalle-carrusel" src="${producto.imagen}" alt="${producto.nombre}">
+      <div class="carrusel-imagen" id="carrusel-imagen-modal">
+        ${renderCarrusel()}
       </div>
       <div class="detalle-controles">
         <p id="precio-detalle-${producto.id}">Precio: $${precioMostrar}</p>
@@ -369,6 +396,40 @@ function mostrarDetalle(id) {
   `;
 
   document.getElementById('modal-detalle').style.display = 'block';
+
+  // Flechas: solo si hay más de una imagen
+  if (imagenes.length > 1) {
+    document.getElementById('flecha-izq').onclick = () => {
+      indiceActual = (indiceActual - 1 + imagenes.length) % imagenes.length;
+      document.getElementById('carrusel-imagen-modal').innerHTML = renderCarrusel();
+      addFlechas(); // vuelve a asignar eventos
+    };
+    document.getElementById('flecha-der').onclick = () => {
+      indiceActual = (indiceActual + 1) % imagenes.length;
+      document.getElementById('carrusel-imagen-modal').innerHTML = renderCarrusel();
+      addFlechas();
+    };
+  }
+
+  function addFlechas() {
+    if (imagenes.length > 1) {
+      if (document.getElementById('flecha-izq')) {
+        document.getElementById('flecha-izq').onclick = () => {
+          indiceActual = (indiceActual - 1 + imagenes.length) % imagenes.length;
+          document.getElementById('carrusel-imagen-modal').innerHTML = renderCarrusel();
+          addFlechas();
+        };
+      }
+      if (document.getElementById('flecha-der')) {
+        document.getElementById('flecha-der').onclick = () => {
+          indiceActual = (indiceActual + 1) % imagenes.length;
+          document.getElementById('carrusel-imagen-modal').innerHTML = renderCarrusel();
+          addFlechas();
+        };
+      }
+    }
+  }
+  addFlechas();
 
   actualizarStockVariacion(producto.id);
 }
