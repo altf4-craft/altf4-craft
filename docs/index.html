@@ -1,139 +1,195 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Alt F4 Craft</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="img/icon.png"
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Alt F4 Craft</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="img/icon.png" />
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="logo-container">
+        <img src="img/Logo_AltF4.png" alt="Logo Alt F4 Craft" class="logo" />
+        <h1>Alt F4 Craft</h1>
+      </div>
 
-  <!-- HEADER --> 
-  <header class="site-header">
-    <div class="logo-container"> 
-      <img src="img/Logo_AltF4.png" alt="Logo Alt F4 Craft" class="logo"> 
-      <h1>Alt F4 Craft</h1>
+      <div class="header-controls">
+        <!--<h1>Catálogo</h1>-->
+
+        <input
+          type="text"
+          id="buscador"
+          placeholder="Buscar productos..."
+          onkeyup="filtrarProductos()"
+        />
+
+        <select id="filtro" onchange="ordenarProductos()">
+          <option value="default">Ordenar por</option>
+          <option value="precio-asc">Precio menor a mayor</option>
+          <option value="precio-desc">Precio mayor a menor</option>
+          <option value="nombre">Nombre (A-Z)</option>
+        </select>
+
+        <div id="carrito-icono" onclick="abrirModal()">
+          🛒 <span id="contador-carrito">0</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Banner Carrusel -->
+    <div class="banner-carrusel">
+      <!--<button class="banner-flecha" id="banner-prev">&#10094;</button>-->
+      <div class="banner-slides">
+        <div class="banner-slide active">
+          <img src="img/Promos_Teyvatday.png" alt="Promo 1" />
+          <!--<div class="banner-texto">¡Bienvenida a Alt F4 Craft!</div>-->
+        </div>
+        <!--<div class="banner-slide">
+        <img src="img/banner2.jpg" alt="Promo 2">
+        <div class="banner-texto">Promos exclusivas Teyvatday</div>
+      </div>
+      <div class="banner-slide">
+        <img src="img/banner3.jpg" alt="Promo 3">
+        <div class="banner-texto">Personalizá tu cuaderno</div>
+      </div>-->
+      </div>
+      <!--<button class="banner-flecha" id="banner-next">&#10095;</button>
+    <div class="banner-puntos" id="banner-puntos"></div>-->
     </div>
 
-  <div class="header-controls">
-    <!--<h1>Catálogo</h1>-->
-    
-    <input type="text" id="buscador" placeholder="Buscar productos..." onkeyup="filtrarProductos()">
-    
-    <select id="filtro" onchange="ordenarProductos()">
-      <option value="default">Ordenar por</option>
-      <option value="precio-asc">Precio menor a mayor</option>
-      <option value="precio-desc">Precio mayor a menor</option>
-      <option value="nombre">Nombre (A-Z)</option>
-    </select>
+    <div id="catalogo" class="catalogo"></div>
 
-    <div id="carrito-icono" onclick="abrirModal()">
-      🛒 <span id="contador-carrito">0</span>
-    </div>
-  </div>
-  </header>
+    <!-- Modal del Carrito -->
 
-  <div id="catalogo" class="catalogo"></div>
-
-  <!-- Modal del Carrito -->
-  
     <div id="modal-carrito" class="modal">
       <div class="modal-contenido">
         <span class="cerrar" onclick="cerrarModal()">&times;</span>
         <h2>Carrito</h2>
         <ul id="lista-carrito"></ul>
+        <div id="cupon-container" class="cupon-section">
+          <label for="codigo-cupon">¿Tenés un cupón de descuento?</label>
+          <div class="cupon-inputs">
+            <input
+              type="text"
+              id="codigo-cupon"
+              placeholder="Ingresá tu código"
+            />
+            <button id="aplicar-cupon">Aplicar</button>
+          </div>
+          <p id="mensaje-cupon"></p>
+        </div>
+        <p
+          id="descuento-aplicado"
+          style="color: #e8499a; font-weight: bold"
+        ></p>
         <p id="total">Total: $0</p>
         <!-- formulario-datos.html (o incluí este código en tu index.html antes del botón de enviar por WhatsApp) -->
         <section id="formulario-cliente">
           <h2>Datos del cliente</h2>
-          <form id="form-datos" style="display: flex; flex-wrap: wrap; gap: 10px;">
+          <form
+            id="form-datos"
+            style="display: flex; flex-wrap: wrap; gap: 10px"
+          >
             <div>
-            <label>Nombre completo</label>
-            <input name="nombre" placeholder="Ej: Alison Pérez" required>
+              <label>Nombre completo</label>
+              <input name="nombre" placeholder="Ej: Alison Pérez" required />
             </div>
 
             <div>
-            <label>DNI</label>
-            <input name="dni" placeholder="Ej: 30111222" required>
+              <label>DNI</label>
+              <input name="dni" placeholder="Ej: 30111222" required />
             </div>
 
             <div>
-            <label>Email</label>
-            <input name="email" type="email" placeholder="Ej: alison@email.com" required>
+              <label>Email</label>
+              <input
+                name="email"
+                type="email"
+                placeholder="Ej: alison@email.com"
+                required
+              />
             </div>
 
             <div>
-            <label>Celular</label>
-            <input name="celular" placeholder="Ej: 1155552222" required>
+              <label>Celular</label>
+              <input name="celular" placeholder="Ej: 1155552222" required />
             </div>
 
             <div>
-            <label>Método de envío</label>
-            <select name="envio" required>
-              <option value="Punto de retiro">Punto de retiro</option>
-              <option value="Envío por correo">Envío por correo</option>
-            </select>
+              <label>Método de envío</label>
+              <select name="envio" required>
+                <option value="Punto de retiro">Punto de retiro</option>
+                <option value="Envío por correo">Envío por correo</option>
+              </select>
             </div>
 
             <div>
-            <label>¿Quién recibe?</label>
-            <input name="recibe" placeholder="Ej: Tu nombre o el de alguien más" required>
+              <label>¿Quién recibe?</label>
+              <input
+                name="recibe"
+                placeholder="Ej: Tu nombre o el de alguien más"
+                required
+              />
             </div>
 
             <div>
-            <label>Método de pago</label>
-            <select name="pago" required>
-              <option value="Transferencia">Transferencia</option>
-              <option value="Link de pago">Link de pago</option>
-            </select>
+              <label>Método de pago</label>
+              <select name="pago" required>
+                <option value="Transferencia">Transferencia</option>
+                <option value="Link de pago">Link de pago</option>
+              </select>
             </div>
 
             <div>
-            <label>¿Autoriza publicación?</label>
-            <select name="publicidad" required>
-              <option value="Sí">Sí</option>
-              <option value="No">No</option>
-            </select>
+              <label>¿Autoriza publicación?</label>
+              <select name="publicidad" required>
+                <option value="Sí">Sí</option>
+                <option value="No">No</option>
+              </select>
             </div>
 
             <div>
-            <label>¿Factura C?</label>
-            <select name="factura" required>
-              <option value="Sí">Sí</option>
-              <option value="No">No</option>
-            </select>
+              <label>¿Factura C?</label>
+              <select name="factura" required>
+                <option value="Sí">Sí</option>
+                <option value="No">No</option>
+              </select>
             </div>
 
             <button type="submit">Enviar pedido por WhatsApp</button>
           </form>
-
         </section>
       </div>
-    </div> 
- 
+    </div>
 
-  <div id="alerta" class="alerta" style="display: none;">Producto agregado!</div>
+    <div id="alerta" class="alerta" style="display: none">
+      Producto agregado!
+    </div>
 
-  <div id="modal-detalle" class="modal">
-  <div class="modal-contenido">
-    <span class="cerrar" onclick="cerrarDetalle()">&times;</span>
-    <div id="detalle-producto"></div>
-  </div>
-  </div>
+    <div id="modal-detalle" class="modal">
+      <div class="modal-contenido">
+        <span class="cerrar" onclick="cerrarDetalle()">&times;</span>
+        <div id="detalle-producto"></div>
+      </div>
+    </div>
 
-  <!-- FOOTER --> 
-  <footer class="site-footer">
-  <p>&copy; 2025 Alt F4 Craft - Todos los derechos reservados.</p>
-  <p>
-    Síguenos en:
-    <a href="https://www.instagram.com/altf4.craft/" target="_blank">Instagram</a> <!--|
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <p>&copy; 2025 Alt F4 Craft - Todos los derechos reservados.</p>
+      <p>
+        Síguenos en:
+        <a href="https://www.instagram.com/altf4.craft/" target="_blank"
+          >Instagram</a
+        >
+        <!--|
      <a href="#" target="_blank">Facebook</a> |
     <a href="#" target="_blank">TikTok</a> -->
-  </p>
-</footer>
+      </p>
+    </footer>
 
-  <script src="js/script.js"></script>
-
-</body>
+    <script src="js/script.js"></script>
+    <script src="js/cupones.js"></script>
+  </body>
 </html>

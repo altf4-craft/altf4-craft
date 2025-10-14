@@ -7,25 +7,65 @@
     "stock": 10,
     "imagen": "img/charm_personalizado.png",
     "imagenes": [
-    "img/charm_genshin.jpeg",
-    "img/sakura-2.jpg",
-    "img/sakura-3.jpg"
+    "img/charms.jpeg"
     ],
     "descripcion": "Cuaderno artesanal con diseño inspirado en Sakura Card Captor. Ideal para notas, diarios o uso escolar.",
     "variaciones": [
-    {
-      "id": "x5 unidades",
-      "nombre": "x5 unidades",
+      {
+      "id": "x1 unidad (2 CM)",
+      "nombre": "x1 unidad (2 CM)",
       "imagen": "img/charm_personalizado.png",
       "stock": 5,
       "precio": 2500
     },
     {
-      "id": "x10 unidades",
-      "nombre": "x10 unidades",
+      "id": "x5 unidades (2 CM)",
+      "nombre": "x5 unidades (2 CM)",
       "imagen": "img/charm_personalizado.png",
       "stock": 5,
-      "precio": 3500
+      "precio": 8800
+    },
+    {
+      "id": "x10 unidades (2 CM)",
+      "nombre": "x10 unidades (2 CM)",
+      "imagen": "img/charm_personalizado.png",
+      "stock": 5,
+      "precio": 14300
+    },
+    {
+      "id": "x30 unidades (2 CM)",
+      "nombre": "x5 unidades (2 CM)",
+      "imagen": "img/charm_personalizado.png",
+      "stock": 5,
+      "precio": 39600
+    },
+    {
+      "id": "x1 unidad (3 CM)",
+      "nombre": "x1 unidad (3 CM)",
+      "imagen": "img/charm_personalizado.png",
+      "stock": 5,
+      "precio": 3400
+    },
+    {
+      "id": "x5 unidades (3 CM)",
+      "nombre": "x5 unidades (3 CM)",
+      "imagen": "img/charm_personalizado.png",
+      "stock": 5,
+      "precio": 13200
+    },
+    {
+      "id": "x10 unidades (3 CM)",
+      "nombre": "x10 unidades (3 CM)",
+      "imagen": "img/charm_personalizado.png",
+      "stock": 5,
+      "precio": 19800
+    },
+    {
+      "id": "x30 unidades (3 CM)",
+      "nombre": "x30 unidades (3 CM)",
+      "imagen": "img/charm_personalizado.png",
+      "stock": 5,
+      "precio": 49500
     }
     ]
   },
@@ -33,27 +73,70 @@
     "id": "P003",
     "nombre": "Llavero Personalizado",
     "categoria": "Personalizados",
-    "precio": 2000,
+    "precio": 4500,
     "stock": 11,
     "imagen": "img/llavero_personalizado.png",
     "imagenes": [
-    "img/sakura-1.jpg",
-    "img/sakura-2.jpg",
-    "img/sakura-3.jpg"
+    "img/llaveros.jpeg",
+    "img/llaveros2.jpeg"
     ],
     "descripcion": "Cuaderno artesanal con diseño inspirado en Sakura Card Captor. Ideal para notas, diarios o uso escolar.",
     "variaciones": [
-    {
-      "id": "rosa",
-      "nombre": "Rosa",
+      {
+      "id": "x1 unidades (4 CM)",
+      "nombre": "x1 unidades (4 CM)",
       "imagen": "img/llavero_personalizado.png",
-      "stock": 5
+      "stock": 5,
+      "precio": 4500
     },
     {
-      "id": "celeste",
-      "nombre": "Celeste",
+      "id": "x5 unidades (4 CM)",
+      "nombre": "x5 unidades (4 CM)",
       "imagen": "img/llavero_personalizado.png",
-      "stock": 5
+      "stock": 5,
+      "precio": 15500
+    },
+    {
+      "id": "x10 unidades (4 CM)",
+      "nombre": "x10 unidades (4 CM)",
+      "imagen": "img/llavero_personalizado.png",
+      "stock": 5,
+      "precio": 26000
+    },
+    {
+      "id": "x30 unidades (4 CM)",
+      "nombre": "x30 unidades (4 CM)",
+      "imagen": "img/llavero_personalizado.png",
+      "stock": 5,
+      "precio": 72000
+    },
+    {
+      "id": "x1 unidad (5 CM)",
+      "nombre": "x1 unidad (5 CM)",
+      "imagen": "img/llavero_personalizado.png",
+      "stock": 5,
+      "precio": 5300
+    },
+    {
+      "id": "x5 unidades (5 CM)",
+      "nombre": "x5 unidades (5 CM)",
+      "imagen": "img/llavero_personalizado.png",
+      "stock": 5,
+      "precio": 18500
+    },
+    {
+      "id": "x10 unidades (5 CM)",
+      "nombre": "x10 unidades (5 CM)",
+      "imagen": "img/llavero_personalizado.png",
+      "stock": 5,
+      "precio": 29000
+    },
+    {
+      "id": "x30 unidades (5 CM)",
+      "nombre": "x30 unidades (5 CM)",
+      "imagen": "img/llavero_personalizado.png",
+      "stock": 5,
+      "precio": 76500
     }
     ]
   },
@@ -61,27 +144,69 @@
     "id": "P004",
     "nombre": "Standee Personalizado",
     "categoria": "Personalizados",
-    "precio": 1500,
+    "precio": 9000,
     "stock": 10,
-    "imagen": "img/standee_personalizado.jpeg",
+    "imagen": "img/standee_personalizado.jpg",
     "imagenes": [
-    "img/sakura-1.jpg",
-    "img/sakura-2.jpg",
-    "img/sakura-3.jpg"
+    "img/standee.jpeg"
     ],
     "descripcion": "Cuaderno artesanal con diseño inspirado en Sakura Card Captor. Ideal para notas, diarios o uso escolar.",
     "variaciones": [
-    {
-      "id": "rosa",
-      "nombre": "Rosa",
+      {
+      "id": "x1 unidad (10 CM)",
+      "nombre": "x1 unidad (10 CM)",
       "imagen": "img/standee_personalizado.jpeg",
-      "stock": 5
+      "stock": 5,
+      "precio": 9000
     },
     {
-      "id": "celeste",
-      "nombre": "Celeste",
+      "id": "x5 unidades (10 CM)",
+      "nombre": "x5 unidades (10 CM)",
       "imagen": "img/standee_personalizado.jpeg",
-      "stock": 5
+      "stock": 5,
+      "precio": 42500
+    },
+    {
+      "id": "x10 unidades (10 CM)",
+      "nombre": "x10 unidades (10 CM)",
+      "imagen": "img/standee_personalizado.jpeg",
+      "stock": 5,
+      "precio": 75000
+    },
+    {
+      "id": "x20 unidades (10 CM)",
+      "nombre": "x20 unidades (10 CM)",
+      "imagen": "img/standee_personalizado.jpeg",
+      "stock": 5,
+      "precio": 120000
+    },
+    {
+      "id": "x1 unidad (15 CM)",
+      "nombre": "x1 unidad (15 CM)",
+      "imagen": "img/standee_personalizado.jpeg",
+      "stock": 5,
+      "precio": 14000
+    },
+    {
+      "id": "x5 unidades (15 CM)",
+      "nombre": "x5 unidades (15 CM)",
+      "imagen": "img/standee_personalizado.jpeg",
+      "stock": 5,
+      "precio": 63750
+    },
+    {
+      "id": "x10 unidades (15 CM)",
+      "nombre": "x10 unidades (15 CM)",
+      "imagen": "img/standee_personalizado.jpeg",
+      "stock": 5,
+      "precio": 112500
+    },
+    {
+      "id": "x20 unidades (15 CM)",
+      "nombre": "x20 unidades (15 CM)",
+      "imagen": "img/standee_personalizado.jpeg",
+      "stock": 5,
+      "precio": 180000
     }
     ]
   },
@@ -89,27 +214,55 @@
     "id": "P005",
     "nombre": "Anotador Personalizado",
     "categoria": "Personalizados",
-    "precio": 2000,
+    "precio": 17000,
     "stock": 11,
     "imagen": "img/anotador personalizado.png",
     "imagenes": [
-    "img/sakura-1.jpg",
-    "img/sakura-2.jpg",
-    "img/sakura-3.jpg"
+    "img/anotadores.jpeg"
     ],
     "descripcion": "Cuaderno artesanal con diseño inspirado en Sakura Card Captor. Ideal para notas, diarios o uso escolar.",
     "variaciones": [
     {
-      "id": "rosa",
-      "nombre": "Rosa",
+      "id": "x10 unidades (30 hjs)",
+      "nombre": "x10 unidades (30 hjs)",
       "imagen": "img/anotador personalizado.png",
-      "stock": 5
+      "stock": 5,
+      "precio": 17000
     },
     {
-      "id": "celeste",
-      "nombre": "Celeste",
+      "id": "x10 unidades (60 hjs)",
+      "nombre": "x10 unidades (60 hjs)",
       "imagen": "img/anotador personalizado.png",
-      "stock": 5
+      "stock": 5,
+      "precio": 30400
+    },
+    {
+      "id": "x20 unidades (30 hjs)",
+      "nombre": "x20 unidades (30 hjs)",
+      "imagen": "img/anotador personalizado.png",
+      "stock": 5,
+      "precio": 31100
+    },
+    {
+      "id": "x20 unidades (60 hjs)",
+      "nombre": "x20 unidades (60 hjs)",
+      "imagen": "img/anotador personalizado.png",
+      "stock": 5,
+      "precio": 55600
+    },
+    {
+      "id": "x40 unidades (30 hjs)",
+      "nombre": "x40 unidades (30 hjs)",
+      "imagen": "img/anotador personalizado.png",
+      "stock": 5,
+      "precio": 52600
+    },
+    {
+      "id": "x40 unidades (60 hjs)",
+      "nombre": "x40 unidades (60 hjs)",
+      "imagen": "img/anotador personalizado.png",
+      "stock": 5,
+      "precio": 93800
     }
     ]
   },
@@ -117,27 +270,55 @@
     "id": "P006",
     "nombre": "Block de notas Personalizado",
     "categoria": "Personalizados",
-    "precio": 1500,
+    "precio": 8200,
     "stock": 10,
     "imagen": "img/blocknotaspersonalizados.jpg",
     "imagenes": [
-    "img/sakura-1.jpg",
-    "img/sakura-2.jpg",
-    "img/sakura-3.jpg"
+    "img/blocknotas.jpeg"
     ],
     "descripcion": "Cuaderno artesanal con diseño inspirado en Sakura Card Captor. Ideal para notas, diarios o uso escolar.",
     "variaciones": [
     {
-      "id": "rosa",
-      "nombre": "Rosa",
+      "id": "x10 unidades (30 hjs)",
+      "nombre": "x10 unidades (30 hjs)",
       "imagen": "img/blocknotaspersonalizados.jpg",
-      "stock": 5
+      "stock": 5,
+      "precio": 8200
     },
     {
-      "id": "celeste",
-      "nombre": "Celeste",
+      "id": "x10 unidades (60 hjs)",
+      "nombre": "x10 unidades (60 hjs)",
       "imagen": "img/blocknotaspersonalizados.jpg",
-      "stock": 5
+      "stock": 5,
+      "precio": 14300
+    },
+    {
+      "id": "x20 unidades (30 hjs)",
+      "nombre": "x20 unidades (30 hjs)",
+      "imagen": "img/blocknotaspersonalizados.jpg",
+      "stock": 5,
+      "precio": 15000
+    },
+    {
+      "id": "x20 unidades (60 hjs)",
+      "nombre": "x20 unidades (60 hjs)",
+      "imagen": "img/blocknotaspersonalizados.jpg",
+      "stock": 5,
+      "precio": 26100
+    },
+    {
+      "id": "x40 unidades (30 hjs)",
+      "nombre": "x40 unidades (30 hjs)",
+      "imagen": "img/blocknotaspersonalizados.jpg",
+      "stock": 5,
+      "precio": 25300
+    },
+    {
+      "id": "x40 unidades (60 hjs)",
+      "nombre": "x40 unidades (60 hjs)",
+      "imagen": "img/blocknotaspersonalizados.jpg",
+      "stock": 5,
+      "precio": 44100
     }
     ]
   },
@@ -145,120 +326,133 @@
     "id": "P007",
     "nombre": "Stickers Personalizado",
     "categoria": "Stickers",
-    "precio": 800,
+    "precio": 4100,
     "stock": 20,
-    "imagen": "img/stickers.jpeg",
+    "imagen": "img/stickers2.jpeg",
     "imagenes": [
-      "img/sticker1.jpg",
-      "img/sticker2.jpg",
-      "img/sticker3.jpg"
     ],
     "descripcion": "Pack de stickers personalizados en vinilo resistente al agua. Ideales para decorar notebooks, celulares y más.",
     "variaciones": [
       {
-        "id": "mini",
-        "nombre": "Mini (5x5cm)",
+        "id": "x50 unidades (4 CM)",
+        "nombre": "x50 unidades (4 CM)",
         "imagen": "img/stickers.jpeg",
         "stock": 10,
-        "precio": 800
+        "precio": 4100
       },
       {
-        "id": "grande",
-        "nombre": "Grande (10x10cm)",
+        "id": "x60 unidades (4 CM)",
+        "nombre": "x60 unidades (4 CM)",
         "imagen": "img/stickers.jpeg",
         "stock": 10,
-        "precio": 1200
-      }
-    ]
-  },
-  {
-    "id": "P008",
-    "nombre": "Marcapaginas imantado Personalizada",
-    "categoria": "Tazas",
-    "precio": 3500,
-    "stock": 8,
-    "imagen": "img/marcapaginas_imantado.jpg",
-    "imagenes": [
-      "img/taza1.jpg",
-      "img/taza2.jpg"
-    ],
-    "descripcion": "Taza de cerámica personalizada con tu diseño favorito. Apta para microondas y lavavajillas.",
-    "variaciones": [
-      {
-        "id": "blanca",
-        "nombre": "Blanca",
-        "imagen": "img/marcapaginas_imantado.jpg",
-        "stock": 4,
-        "precio": 3500
+        "precio": 4500
       },
       {
-        "id": "magica",
-        "nombre": "Mágica (cambia color)",
-        "imagen": "img/marcapaginas_imantado.jpg",
-        "stock": 4,
-        "precio": 4200
-      }
-    ]
-  },
-  {
-    "id": "P009",
-    "nombre": "Marcapaginas común Personalizado",
-    "categoria": "Accesorios",
-    "precio": 2200,
-    "stock": 12,
-    "imagen": "img/marcapaginas_comun.jpeg",
-    "imagenes": [
-      "img/mousepad1.jpg",
-      "img/mousepad2.jpg"
-    ],
-    "descripcion": "Mousepad de tela con base antideslizante y diseño personalizado.",
-    "variaciones": [
-      {
-        "id": "redondo",
-        "nombre": "Redondo",
-        "imagen": "img/marcapaginas_comun.jpeg",
-        "stock": 6,
-        "precio": 2200
+        "id": "x80 unidades (4 CM)",
+        "nombre": "x80 unidades (4 CM)",
+        "imagen": "img/stickers.jpeg",
+        "stock": 10,
+        "precio": 5300
       },
       {
-        "id": "rectangular",
-        "nombre": "Rectangular",
-        "imagen": "img/marcapaginas_comun.jpeg",
-        "stock": 6,
-        "precio": 2500
+        "id": "x100 unidades (4 CM)",
+        "nombre": "x100 unidades (4 CM)",
+        "imagen": "img/stickers.jpeg",
+        "stock": 10,
+        "precio": 5900
+      },
+      {
+        "id": "x60 unidades (5 CM)",
+        "nombre": "x60 unidades (5 CM)",
+        "imagen": "img/stickers.jpeg",
+        "stock": 10,
+        "precio": 7000
+      },
+      {
+        "id": "x80 unidades (5 CM)",
+        "nombre": "x80 unidades (5 CM)",
+        "imagen": "img/stickers.jpeg",
+        "stock": 10,
+        "precio": 8300
+      },
+      {
+        "id": "x100 unidades (5 CM)",
+        "nombre": "x100 unidades (5 CM)",
+        "imagen": "img/stickers.jpeg",
+        "stock": 10,
+        "precio": 9000
+      },
+      {
+        "id": "x60 unidades (6 CM)",
+        "nombre": "x60 unidades (6 CM)",
+        "imagen": "img/stickers.jpeg",
+        "stock": 10,
+        "precio": 9100
+      },
+      {
+        "id": "x80 unidades (6 CM)",
+        "nombre": "x80 unidades (6 CM)",
+        "imagen": "img/stickers.jpeg",
+        "stock": 10,
+        "precio": 10400
+      },
+      {
+        "id": "x100 unidades (6 CM)",
+        "nombre": "x100 unidades (6 CM)",
+        "imagen": "img/stickers.jpeg",
+        "stock": 10,
+        "precio": 11900
       }
     ]
   },
   {
     "id": "P010",
-    "nombre": "Polaroids Personalizada",
+    "nombre": "Photocards 5.5cm x 8.5cm Personalizada",
     "categoria": "Indumentaria",
     "precio": 5000,
     "stock": 15,
-    "imagen": "img/polaroids.jpeg",
-    "imagenes": [
-      "img/remera1.jpg",
-      "img/remera2.jpg"
-    ],
+    "imagen": "img/photocards.jpeg",
+    "imagenes": [ ],
     "descripcion": "Remera de algodón personalizada con tu diseño. Disponible en varios talles y colores.",
     "variaciones": [
       {
-        "id": "s",
-        "nombre": "Talle S",
+        "id": "x20 unidades (simple)",
+        "nombre": "x20 unidades (simple)",
         "imagen": "img/polaroids.jpeg",
         "stock": 5,
         "precio": 5000
       },
       {
-        "id": "m",
-        "nombre": "Talle M",
+        "id": "x40 unidades (simple)",
+        "nombre": "x40 unidades (simple)",
         "imagen": "img/polaroids.jpeg",
         "stock": 5,
         "precio": 5000
       },
       {
-        "id": "l",
-        "nombre": "Talle L",
+        "id": "x60 unidades (simple)",
+        "nombre": "x60 unidades (simple)",
+        "imagen": "img/polaroids.jpeg",
+        "stock": 5,
+        "precio": 5000
+      },
+      {
+        "id": "x20 unidades (doble faz)",
+        "nombre": "x20 unidades (doble faz)",
+        "imagen": "img/polaroids.jpeg",
+        "stock": 5,
+        "precio": 5000
+      },
+      {
+        "id": "x40 unidades (doble faz)",
+        "nombre": "x40 unidades (doble faz)",
+        "imagen": "img/polaroids.jpeg",
+        "stock": 5,
+        "precio": 5000
+      },
+      {
+        "id": "x60 unidades (doble faz)",
+        "nombre": "x60 unidades (doble faz)",
         "imagen": "img/polaroids.jpeg",
         "stock": 5,
         "precio": 5000
@@ -267,27 +461,92 @@
   },
   {
     "id": "P011",
-    "nombre": "Prints Personalizada",
+    "nombre": "Photocards 6.5cm x 9cm Personalizada",
+    "categoria": "Indumentaria",
+    "precio": 5000,
+    "stock": 15,
+    "imagen": "img/photocards.jpeg",
+    "imagenes": [],
+    "descripcion": "Remera de algodón personalizada con tu diseño. Disponible en varios talles y colores.",
+    "variaciones": [
+      {
+        "id": "x20 unidades (simple)",
+        "nombre": "x20 unidades (simple)",
+        "imagen": "img/polaroids.jpeg",
+        "stock": 5,
+        "precio": 5000
+      },
+      {
+        "id": "x40 unidades (simple)",
+        "nombre": "x40 unidades (simple)",
+        "imagen": "img/polaroids.jpeg",
+        "stock": 5,
+        "precio": 5000
+      },
+      {
+        "id": "x60 unidades (simple)",
+        "nombre": "x60 unidades (simple)",
+        "imagen": "img/polaroids.jpeg",
+        "stock": 5,
+        "precio": 5000
+      },
+      {
+        "id": "x20 unidades (doble faz)",
+        "nombre": "x20 unidades (doble faz)",
+        "imagen": "img/polaroids.jpeg",
+        "stock": 5,
+        "precio": 5000
+      },
+      {
+        "id": "x40 unidades (doble faz)",
+        "nombre": "x40 unidades (doble faz)",
+        "imagen": "img/polaroids.jpeg",
+        "stock": 5,
+        "precio": 5000
+      },
+      {
+        "id": "x60 unidades (doble faz)",
+        "nombre": "x60 unidades (doble faz)",
+        "imagen": "img/polaroids.jpeg",
+        "stock": 5,
+        "precio": 5000
+      }
+    ]
+  },
+  {
+    "id": "P012",
+    "nombre": "Prints A5 Personalizada",
     "categoria": "Accesorios",
     "precio": 3200,
     "stock": 10,
     "imagen": "img/prints.jpeg",
-    "imagenes": [
-      "img/botella1.jpg",
-      "img/botella2.jpg"
-    ],
+    "imagenes": [ ],
     "descripcion": "Botella de aluminio personalizada, ideal para llevar a todos lados.",
     "variaciones": [
       {
-        "id": "negra",
-        "nombre": "Negra",
+        "id": "x8 unidades",
+        "nombre": "x8 unidades",
         "imagen": "img/prints.jpeg",
         "stock": 5,
         "precio": 3200
       },
       {
-        "id": "blanca",
-        "nombre": "Blanca",
+        "id": "x12 unidades",
+        "nombre": "x12 unidades",
+        "imagen": "img/prints.jpeg",
+        "stock": 5,
+        "precio": 3200
+      },
+      {
+        "id": "x20 unidades",
+        "nombre": "x20 unidades",
+        "imagen": "img/prints.jpeg",
+        "stock": 5,
+        "precio": 3200
+      },
+      {
+        "id": "x50 unidades",
+        "nombre": "x50 unidades",
         "imagen": "img/prints.jpeg",
         "stock": 5,
         "precio": 3200
@@ -295,28 +554,119 @@
     ]
   },
   {
-    "id": "P012",
-    "nombre": "Photocards Personalizado",
+    "id": "P013",
+    "nombre": "Prints A4 Personalizada",
+    "categoria": "Accesorios",
+    "precio": 3200,
+    "stock": 10,
+    "imagen": "img/prints.jpeg",
+    "imagenes": [],
+    "descripcion": "Botella de aluminio personalizada, ideal para llevar a todos lados.",
+    "variaciones": [
+      {
+        "id": "x5 unidades",
+        "nombre": "x5 unidades",
+        "imagen": "img/prints.jpeg",
+        "stock": 5,
+        "precio": 3200
+      },
+      {
+        "id": "x14 unidades",
+        "nombre": "x14 unidades",
+        "imagen": "img/prints.jpeg",
+        "stock": 5,
+        "precio": 3200
+      },
+      {
+        "id": "x20 unidades",
+        "nombre": "x20 unidades",
+        "imagen": "img/prints.jpeg",
+        "stock": 5,
+        "precio": 3200
+      },
+      {
+        "id": "x50 unidades",
+        "nombre": "x50 unidades",
+        "imagen": "img/prints.jpeg",
+        "stock": 5,
+        "precio": 3200
+      }
+    ]
+  },
+  {
+    "id": "P014",
+    "nombre": "Polaroid simple (8.8cm x 10.7cm) Personalizado",
     "categoria": "Papelería",
     "precio": 1800,
     "stock": 14,
-    "imagen": "img/cuaderno_personalizado.jpg",
-    "imagenes": [
-      "img/cuaderno1.jpg",
-      "img/cuaderno2.jpg"
-    ],
+    "imagen": "img/polaroids.jpeg",
+    "imagenes": [ ],
     "descripcion": "Cuaderno artesanal con tapa personalizada. 80 hojas rayadas.",
     "variaciones": [
       {
-        "id": "a5",
-        "nombre": "Tamaño A5",
+        "id": "x16 unidades",
+        "nombre": "x16 unidades",
         "imagen": "img/cuaderno_personalizado.jpg",
         "stock": 7,
         "precio": 1800
       },
       {
-        "id": "a4",
-        "nombre": "Tamaño A4",
+        "id": "x32 unidades",
+        "nombre": "x32 unidades",
+        "imagen": "img/cuaderno_a4.jpg",
+        "stock": 7,
+        "precio": 2500
+      },
+      {
+        "id": "x48 unidades",
+        "nombre": "x48 unidades",
+        "imagen": "img/cuaderno_a4.jpg",
+        "stock": 7,
+        "precio": 2500
+      },
+      {
+        "id": "x80 unidades",
+        "nombre": "x80 unidades",
+        "imagen": "img/cuaderno_a4.jpg",
+        "stock": 7,
+        "precio": 2500
+      }
+    ]
+  },
+  {
+    "id": "P015",
+    "nombre": "Polaroid Triple (5cm x 12.9cm) Personalizado",
+    "categoria": "Papelería",
+    "precio": 1800,
+    "stock": 14,
+    "imagen": "img/polaroids.jpeg",
+    "imagenes": [],
+    "descripcion": "Cuaderno artesanal con tapa personalizada. 80 hojas rayadas.",
+    "variaciones": [
+      {
+        "id": "x14 unidades",
+        "nombre": "x14 unidades",
+        "imagen": "img/cuaderno_personalizado.jpg",
+        "stock": 7,
+        "precio": 1800
+      },
+      {
+        "id": "x28 unidades",
+        "nombre": "x28 unidades",
+        "imagen": "img/cuaderno_a4.jpg",
+        "stock": 7,
+        "precio": 2500
+      },
+      {
+        "id": "x56 unidades",
+        "nombre": "x56 unidades",
+        "imagen": "img/cuaderno_a4.jpg",
+        "stock": 7,
+        "precio": 2500
+      },
+      {
+        "id": "x84 unidades",
+        "nombre": "x84 unidades",
         "imagen": "img/cuaderno_a4.jpg",
         "stock": 7,
         "precio": 2500

@@ -1,0 +1,20 @@
+[
+  {
+    "codigo": "INAGURACION10",
+    "descuento": 10,
+    "inicio": "2025-10-01",
+    "fin": "2025-12-31"
+  },
+  {
+    "codigo": "HALLOWEEN25",
+    "descuento": 25,
+    "inicio": "2025-10-10",
+    "fin": "2025-10-31"
+  },
+  {
+    "codigo": "NAVIDAD30",
+    "descuento": 30,
+    "inicio": "2025-12-01",
+    "fin": "2025-12-31"
+  }
+]
