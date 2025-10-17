@@ -814,3 +814,36 @@ function aplicarDescuento(porcentaje) {
   actualizarCarrito();
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+  const envioSelect = document.querySelector('select[name="envio"]');
+  const pagoSelect = document.querySelector('select[name="pago"]');
+
+  function actualizarOpcionesPago() {
+    // Verifica si ya existe la opción "Efectivo"
+    let efectivoOption = Array.from(pagoSelect.options).find(opt => opt.value === "Efectivo");
+
+    if (envioSelect.value === "Punto de retiro" || envioSelect.value === "Evento") {
+      // Si no existe, la agrega
+      if (!efectivoOption) {
+        const option = document.createElement("option");
+        option.value = "Efectivo";
+        option.textContent = "Efectivo";
+        pagoSelect.appendChild(option);
+      }
+    } else {
+      // Si existe y no corresponde, la elimina
+      if (efectivoOption) {
+        pagoSelect.removeChild(efectivoOption);
+      }
+      // Si el usuario tenía seleccionado "Efectivo", lo cambia a la primera opción
+      if (pagoSelect.value === "Efectivo") {
+        pagoSelect.selectedIndex = 0;
+      }
+    }
+  }
+
+  envioSelect.addEventListener("change", actualizarOpcionesPago);
+  // Ejecuta al cargar la página por si hay valores preseleccionados
+  actualizarOpcionesPago();
+});
+
