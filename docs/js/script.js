@@ -805,7 +805,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Auto-avance cada 6 segundos
   setInterval(() => {
     mostrarSlide((actual + 1) % slides.length);
-  }, 6000);
+  }, 8000);
 });
 
 // Modifica la función aplicarDescuento en cupones.js así:
