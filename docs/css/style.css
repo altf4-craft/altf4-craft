@@ -274,8 +274,8 @@ button:hover {
   border: none;
   color: #a03e8b;
   font-size: 2em;
-  width: 36px;
-  height: 36px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
@@ -365,8 +365,8 @@ button:hover {
   font-size: 2.2em;
   color: #a03e8b;
   border-radius: 50%;
-  width: 44px;
-  height: 44px;
+  width: 34px;
+  height: 34px;
   cursor: pointer;
   z-index: 10;
   transition: background 0.2s;
@@ -378,8 +378,8 @@ button:hover {
   background: #e0c6e6;
   color: #fff;
 }
-#banner-prev { left: 12px; }
-#banner-next { right: 12px; }
+#banner-prev { left: 2px; }
+#banner-next { right: 2px; }
 
 .banner-puntos {
   position: absolute;
