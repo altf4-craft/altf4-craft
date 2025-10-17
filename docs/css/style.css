@@ -2,7 +2,7 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 20px;
-  background-color: #f8e0f3;
+  background-color: #f0e9f5;
 }
 
 header {
@@ -175,7 +175,7 @@ button:hover {
   align-items: center;
   gap: 16px;
   padding: 12px 20px;
-  background: #f8e0f3;
+  background: #f0e9f5;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   position: sticky;
   top: 0;
@@ -218,7 +218,7 @@ button:hover {
 .site-footer {
   margin-top: 40px;
   padding: 18px 20px;
-  background: #f8e0f3;
+  background: #f0e9f5;
   border-top: 1px solid rgba(0, 0, 0, 0.04);
   text-align: center;
 }
@@ -583,4 +583,12 @@ button:hover {
 #mensaje-cupon {
   margin-top: 0.5rem;
   font-size: 0.9rem;
+}
+
+#img-carrusel-modal {
+  max-width: 320px;
+  max-height: 320px;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
 }
