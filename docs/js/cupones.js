@@ -15,8 +15,20 @@ document.getElementById("aplicar-cupon").addEventListener("click", async () => {
       return;
     }
 
-    const inicio = new Date(cupon.inicio);
-    const fin = new Date(cupon.fin);
+    // Parsear las fechas como días completos en hora de Argentina (ART = UTC-3)
+    function parseArgDateStart(dateStr) {
+      const [y, m, d] = dateStr.split('-').map(Number);
+      // 00:00 ART corresponde a 03:00 UTC -> usamos Date.UTC(year,month-1,day,03:00)
+      return new Date(Date.UTC(y, m - 1, d, 3, 0, 0));
+    }
+    function parseArgDateEnd(dateStr) {
+      const [y, m, d] = dateStr.split('-').map(Number);
+      // fin del día ART = un ms antes del 00:00 ART del día siguiente
+      return new Date(Date.UTC(y, m - 1, d + 1, 3, 0, 0) - 1);
+    }
+
+    const inicio = parseArgDateStart(cupon.inicio);
+    const fin = parseArgDateEnd(cupon.fin);
 
     if (hoy < inicio || hoy > fin) {
       mensaje.textContent = "⚠️ Este cupón no está activo.";
