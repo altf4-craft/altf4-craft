@@ -1,11 +1,11 @@
 let productos = [];
-let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 // Variable global para guardar el total con descuento
 let totalConDescuento = null;
 let porcentajeDescuento = null;
 
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener("DOMContentLoaded", async () => {
   productos = await cargarProductos();
   mostrarProductos(productos);
   actualizarCarrito();
@@ -23,17 +23,19 @@ async function cargarProductos() {
 }
 
 function mostrarProductos(listaProductos) {
-  const catalogo = document.getElementById('catalogo');
-  catalogo.innerHTML = '';
+  const catalogo = document.getElementById("catalogo");
+  catalogo.innerHTML = "";
 
-  listaProductos.forEach(producto => {
-    const div = document.createElement('div');
-    div.className = 'producto';
+  listaProductos.forEach((producto) => {
+    const div = document.createElement("div");
+    div.className = "producto";
     div.innerHTML = `
-      <img src="${producto.imagen}" alt="${producto.nombre}" onclick="mostrarDetalle('${producto.id}')">
+      <img src="${producto.imagen}" alt="${
+      producto.nombre
+    }" onclick="mostrarDetalle('${producto.id}')">
       <h2>${producto.nombre}</h2>
       <p>Precio: $${producto.precio}</p>
-      <p>3 cuotas de $${(producto.precio/3).toFixed(2)}</p>
+      <p>3 cuotas de $${(producto.precio / 3).toFixed(2)}</p>
       <button onclick="mostrarDetalle('${producto.id}')">Ver más</button>
     `;
 
@@ -49,7 +51,7 @@ function mostrarProductos(listaProductos) {
 
 // Cambia la función agregarAlCarrito para aceptar cantidadManual
 function agregarAlCarrito(id, cantidadManual, variacionSeleccion = null) {
-  let producto = productos.find(p => p.id === id);
+  let producto = productos.find((p) => p.id === id);
   let nombre = producto.nombre;
   let precio = producto.precio;
   let stock = producto.stock;
@@ -61,8 +63,8 @@ function agregarAlCarrito(id, cantidadManual, variacionSeleccion = null) {
     producto.variaciones &&
     producto.variaciones.length > 0
   ) {
-    const variacion = producto.variaciones.find(v =>
-      v.nombre === variacionSeleccion.nombre
+    const variacion = producto.variaciones.find(
+      (v) => v.nombre === variacionSeleccion.nombre
     );
     if (variacion) {
       nombre += ` (${variacion.nombre})`;
@@ -72,9 +74,10 @@ function agregarAlCarrito(id, cantidadManual, variacionSeleccion = null) {
     }
   }
 
-  let cantidad = cantidadManual !== undefined
-    ? cantidadManual
-    : parseInt(document.getElementById('cantidad-' + id).value);
+  let cantidad =
+    cantidadManual !== undefined
+      ? cantidadManual
+      : parseInt(document.getElementById("cantidad-" + id).value);
 
   if (!producto || cantidad <= 0 || isNaN(cantidad)) {
     alert("Cantidad inválida o producto no encontrado");
@@ -82,11 +85,11 @@ function agregarAlCarrito(id, cantidadManual, variacionSeleccion = null) {
   }
 
   // Busca por idCarrito (id+variacion)
-  const productoExistente = carrito.find(item => item.id === idCarrito);
+  const productoExistente = carrito.find((item) => item.id === idCarrito);
 
   if (productoExistente) {
     if (productoExistente.cantidad + cantidad > stock) {
-      alert('No hay suficiente stock disponible');
+      alert("No hay suficiente stock disponible");
       return;
     }
     productoExistente.cantidad += cantidad;
@@ -94,7 +97,7 @@ function agregarAlCarrito(id, cantidadManual, variacionSeleccion = null) {
     productoExistente.subtotal = productoExistente.cantidad * precio;
   } else {
     if (cantidad > stock) {
-      alert('No hay suficiente stock disponible');
+      alert("No hay suficiente stock disponible");
       return;
     }
     carrito.push({
@@ -102,7 +105,7 @@ function agregarAlCarrito(id, cantidadManual, variacionSeleccion = null) {
       nombre: nombre,
       precio: precio,
       cantidad: cantidad,
-      subtotal: precio * cantidad
+      subtotal: precio * cantidad,
     });
   }
 
@@ -112,16 +115,16 @@ function agregarAlCarrito(id, cantidadManual, variacionSeleccion = null) {
 }
 
 function mostrarDetalle(id) {
-  const producto = productos.find(p => p.id === id);
+  const producto = productos.find((p) => p.id === id);
   if (!producto) return;
 
-  const contenedor = document.getElementById('detalle-producto');
+  const contenedor = document.getElementById("detalle-producto");
 
   // Prepara el array de imágenes (principal + extras, sin repetir)
   let imagenes = [];
   if (producto.imagen) imagenes.push(producto.imagen);
   if (producto.imagenes && producto.imagenes.length > 0) {
-    producto.imagenes.forEach(src => {
+    producto.imagenes.forEach((src) => {
       if (!imagenes.includes(src)) imagenes.push(src);
     });
   }
@@ -131,8 +134,8 @@ function mostrarDetalle(id) {
 
   // Función para renderizar la imagen y flechas
   function renderCarrusel() {
-    let flechaIzq = '';
-    let flechaDer = '';
+    let flechaIzq = "";
+    let flechaDer = "";
     if (imagenes.length > 1) {
       flechaIzq = `<span id="flecha-izq" style="cursor:pointer;font-size:2em;margin-right:10px;">&#8592;</span>`;
       flechaDer = `<span id="flecha-der" style="cursor:pointer;font-size:2em;margin-left:10px;">&#8594;</span>`;
@@ -149,14 +152,22 @@ function mostrarDetalle(id) {
   // Selector de variantes (igual que antes)
   let variaciones = producto.variaciones || [];
   let variacionInicial = variaciones[0] || null;
-  let precioMostrar = variacionInicial ? variacionInicial.precio : producto.precio;
-  let stockMostrar = variacionInicial ? (variacionInicial.stock || variacionInicial.Stock) : producto.stock;
-  let selectorVariaciones = '';
+  let precioMostrar = variacionInicial
+    ? variacionInicial.precio
+    : producto.precio;
+  let stockMostrar = variacionInicial
+    ? variacionInicial.stock || variacionInicial.Stock
+    : producto.stock;
+  let selectorVariaciones = "";
   if (variaciones.length > 0) {
     selectorVariaciones = `
       <label for="variacion-${producto.id}">Variante:</label>
-      <select id="variacion-${producto.id}" onchange="actualizarStockVariacion('${producto.id}')">
-        ${variaciones.map(v => `<option value="${v.nombre}">${v.nombre}</option>`).join('')}
+      <select id="variacion-${
+        producto.id
+      }" onchange="actualizarStockVariacion('${producto.id}')">
+        ${variaciones
+          .map((v) => `<option value="${v.nombre}">${v.nombre}</option>`)
+          .join("")}
       </select>
     `;
   }
@@ -171,42 +182,50 @@ function mostrarDetalle(id) {
         <p id="precio-detalle-${producto.id}">Precio: $${precioMostrar}</p>
         ${selectorVariaciones}
         <p id="stock-detalle-${producto.id}">Stock: ${stockMostrar}</p>
-        <input type="number" id="detalle-cantidad-${producto.id}" value="1" min="1" max="${stockMostrar}">
-        <button onclick="agregarDesdeDetalle('${producto.id}')">Agregar al carrito</button>
+        <input type="number" id="detalle-cantidad-${
+          producto.id
+        }" value="1" min="1" max="${stockMostrar}">
+        <button onclick="agregarDesdeDetalle('${
+          producto.id
+        }')">Agregar al carrito</button>
       </div>
     </div>
-    <p>${(producto.descripcion || '').replace(/\n/g, '<br>')}</p>
+    <p>${(producto.descripcion || "").replace(/\n/g, "<br>")}</p>
   `;
 
-  document.getElementById('modal-detalle').style.display = 'block';
+  document.getElementById("modal-detalle").style.display = "block";
 
   // Flechas: solo si hay más de una imagen
   if (imagenes.length > 1) {
-    document.getElementById('flecha-izq').onclick = () => {
+    document.getElementById("flecha-izq").onclick = () => {
       indiceActual = (indiceActual - 1 + imagenes.length) % imagenes.length;
-      document.getElementById('carrusel-imagen-modal').innerHTML = renderCarrusel();
+      document.getElementById("carrusel-imagen-modal").innerHTML =
+        renderCarrusel();
       addFlechas(); // vuelve a asignar eventos
     };
-    document.getElementById('flecha-der').onclick = () => {
+    document.getElementById("flecha-der").onclick = () => {
       indiceActual = (indiceActual + 1) % imagenes.length;
-      document.getElementById('carrusel-imagen-modal').innerHTML = renderCarrusel();
+      document.getElementById("carrusel-imagen-modal").innerHTML =
+        renderCarrusel();
       addFlechas();
     };
   }
 
   function addFlechas() {
     if (imagenes.length > 1) {
-      if (document.getElementById('flecha-izq')) {
-        document.getElementById('flecha-izq').onclick = () => {
+      if (document.getElementById("flecha-izq")) {
+        document.getElementById("flecha-izq").onclick = () => {
           indiceActual = (indiceActual - 1 + imagenes.length) % imagenes.length;
-          document.getElementById('carrusel-imagen-modal').innerHTML = renderCarrusel();
+          document.getElementById("carrusel-imagen-modal").innerHTML =
+            renderCarrusel();
           addFlechas();
         };
       }
-      if (document.getElementById('flecha-der')) {
-        document.getElementById('flecha-der').onclick = () => {
+      if (document.getElementById("flecha-der")) {
+        document.getElementById("flecha-der").onclick = () => {
           indiceActual = (indiceActual + 1) % imagenes.length;
-          document.getElementById('carrusel-imagen-modal').innerHTML = renderCarrusel();
+          document.getElementById("carrusel-imagen-modal").innerHTML =
+            renderCarrusel();
           addFlechas();
         };
       }
@@ -218,17 +237,24 @@ function mostrarDetalle(id) {
 }
 
 function actualizarStockVariacion(productoId) {
-  const producto = productos.find(p => p.id === productoId);
+  const producto = productos.find((p) => p.id === productoId);
   if (!producto || !producto.variaciones) return;
 
   const select = document.getElementById(`variacion-${productoId}`);
   const nombreSeleccionado = select ? select.value : null;
-  const variacion = producto.variaciones.find(v => v.nombre === nombreSeleccionado) || producto.variaciones[0];
+  const variacion =
+    producto.variaciones.find((v) => v.nombre === nombreSeleccionado) ||
+    producto.variaciones[0];
 
   // Actualiza stock y precio
-  document.getElementById(`stock-detalle-${productoId}`).innerText = `Stock: ${variacion.stock || variacion.Stock || producto.stock}`;
-  document.getElementById(`detalle-cantidad-${productoId}`).max = variacion.stock || variacion.Stock || producto.stock;
-  document.getElementById(`precio-detalle-${productoId}`).innerText = `Precio: $${variacion.precio || producto.precio}`;
+  document.getElementById(`stock-detalle-${productoId}`).innerText = `Stock: ${
+    variacion.stock || variacion.Stock || producto.stock
+  }`;
+  document.getElementById(`detalle-cantidad-${productoId}`).max =
+    variacion.stock || variacion.Stock || producto.stock;
+  document.getElementById(
+    `precio-detalle-${productoId}`
+  ).innerText = `Precio: $${variacion.precio || producto.precio}`;
 
   // Actualiza imagen si corresponde
   if (variacion.imagen) {
@@ -239,7 +265,7 @@ function actualizarStockVariacion(productoId) {
 }
 
 function agregarDesdeDetalle(id) {
-  const producto = productos.find(p => p.id === id);
+  const producto = productos.find((p) => p.id === id);
   if (!producto) return;
 
   let cantidad = 1;
@@ -250,11 +276,15 @@ function agregarDesdeDetalle(id) {
   if (producto.variaciones && producto.variaciones.length > 0) {
     const select = document.getElementById(`variacion-${producto.id}`);
     nombreVariacion = select ? select.value : null;
-    const variacion = producto.variaciones.find(v => v.nombre === nombreVariacion);
+    const variacion = producto.variaciones.find(
+      (v) => v.nombre === nombreVariacion
+    );
     if (variacion) stock = variacion.stock || variacion.Stock || producto.stock;
   }
 
-  const inputCantidad = document.getElementById(`detalle-cantidad-${producto.id}`);
+  const inputCantidad = document.getElementById(
+    `detalle-cantidad-${producto.id}`
+  );
   if (inputCantidad) {
     cantidad = parseInt(inputCantidad.value);
     if (isNaN(cantidad) || cantidad < 1) cantidad = 1;
@@ -263,144 +293,189 @@ function agregarDesdeDetalle(id) {
   }
 
   // Pasa la variación seleccionada por nombre
-  agregarAlCarrito(id, cantidad, nombreVariacion ? { nombre: nombreVariacion } : null);
+  agregarAlCarrito(
+    id,
+    cantidad,
+    nombreVariacion ? { nombre: nombreVariacion } : null
+  );
   cerrarDetalle();
 }
 
 function eliminarDelCarrito(id) {
-  carrito = carrito.filter(item => item.id !== id);
+  carrito = carrito.filter((item) => item.id !== id);
   guardarCarrito();
   actualizarCarrito();
 }
 
 function actualizarCarrito() {
-  const lista = document.getElementById('lista-carrito');
-  lista.innerHTML = '';
+  const lista = document.getElementById("lista-carrito");
+  lista.innerHTML = "";
 
-  carrito.forEach(item => {
-    const producto = productos.find(p => p.id === item.id);
+  carrito.forEach((item) => {
+    const producto = productos.find((p) => p.id === item.id);
     const maxStock = producto ? producto.stock : item.cantidad;
 
-    const li = document.createElement('li');
+    const li = document.createElement("li");
     li.innerHTML = `
-      ${item.nombre} - $${item.precio} x 
-      <button onclick="cambiarCantidad('${item.id}', -1)">-</button>
-      <span id="cantidad-${item.id}">${item.cantidad}</span>
-      <button onclick="cambiarCantidad('${item.id}', 1)">+</button>
-      = $${item.subtotal}
-      <button onclick="eliminarDelCarrito('${item.id}')">Eliminar</button>
-    `;
+      ${item.nombre} - $${item.precio} x 
+      <button onclick="cambiarCantidad('${item.id}', -1)">-</button>
+      <span id="cantidad-${item.id}">${item.cantidad}</span>
+      <button onclick="cambiarCantidad('${item.id}', 1)">+</button>
+      = $${item.subtotal}
+      <button onclick="eliminarDelCarrito('${item.id}')">Eliminar</button>
+    `;
     lista.appendChild(li);
   });
 
   const total = carrito.reduce((acc, item) => acc + item.subtotal, 0);
 
-  if (typeof porcentajeDescuento === 'number' && porcentajeDescuento > 0) {
-    const descuento = (total * porcentajeDescuento) / 100;
-    totalConDescuento = total - descuento;
-    document.getElementById('total').textContent = `Total: $${totalConDescuento.toFixed(2)}`;
-    document.getElementById('descuento-aplicado').textContent = `Descuento aplicado: -$${descuento.toFixed(2)}`;
+  // Obtenemos el elemento del mensaje para actualizarlo
+  const mensajeCupon = document.getElementById("mensaje-cupon");
+  const TOPE_DESCUENTO = 20000; // <-- 1. Definimos el tope máximo
+
+  if (typeof porcentajeDescuento === "number" && porcentajeDescuento > 0) {
+    // 2. Calculamos el descuento basado en el porcentaje
+    const descuentoCalculado = (total * porcentajeDescuento) / 100;
+
+    let descuentoAplicado = descuentoCalculado;
+    let mensajeTope = "";
+
+    // 3. Verificamos si el descuento supera el tope
+    if (descuentoCalculado > TOPE_DESCUENTO) {
+      descuentoAplicado = TOPE_DESCUENTO; // Lo limitamos al tope
+      mensajeTope = ` (tope de $${TOPE_DESCUENTO} aplicado)`;
+    }
+
+    // 4. Calculamos el total final usando el descuento ya limitado
+    totalConDescuento = total - descuentoAplicado;
+    document.getElementById(
+      "total"
+    ).textContent = `Total: $${totalConDescuento.toFixed(2)}`;
+    // Mostramos el descuento real aplicado
+    document.getElementById(
+      "descuento-aplicado"
+    ).textContent = `Descuento aplicado: -$${descuentoAplicado.toFixed(2)}`;
+
+    // 5. Actualizamos el mensaje del cupón para reflejar el tope si fue necesario
+    if (mensajeCupon) {
+      mensajeCupon.textContent = `✅ Se aplicó un ${porcentajeDescuento}% de descuento${mensajeTope}.`;
+      mensajeCupon.style.color = "green";
+    }
   } else {
     totalConDescuento = null;
-    document.getElementById('total').textContent = `Total: $${total}`;
-    document.getElementById('descuento-aplicado').textContent = '';
+    document.getElementById("total").textContent = `Total: $${total}`;
+    document.getElementById("descuento-aplicado").textContent = "";
   }
 
-  document.getElementById('contador-carrito').textContent = carrito.length;
+  document.getElementById("contador-carrito").textContent = carrito.length;
 
   if (carrito.length === 0) {
-    document.getElementById('descuento-aplicado').textContent = '';
-    document.getElementById('mensaje-cupon').textContent = '';
+    document.getElementById("descuento-aplicado").textContent = "";
+    // Limpiamos el mensaje si el carrito se vacía
+    if (mensajeCupon) mensajeCupon.textContent = "";
     totalConDescuento = null;
     porcentajeDescuento = null;
   }
 }
 
-document.getElementById('form-datos').addEventListener('submit', async function (e) {
-  e.preventDefault();
+document
+  .getElementById("form-datos")
+  .addEventListener("submit", async function (e) {
+    e.preventDefault();
 
-  const formData = new FormData(this);
-  const datos = {};
-  formData.forEach((valor, clave) => datos[clave] = valor);
+    const formData = new FormData(this);
+    const datos = {};
+    formData.forEach((valor, clave) => (datos[clave] = valor));
 
-  if (carrito.length === 0) {
-    alert("Tu carrito está vacío.");
-    return;
-  }
+    if (carrito.length === 0) {
+      alert("Tu carrito está vacío.");
+      return;
+    }
 
-  let mensaje = "¡Hola! Quiero realizar un pedido:\n\n";
+    let mensaje = "¡Hola! Quiero realizar un pedido:\n\n";
 
-  carrito.forEach(item => {
-    mensaje += `- ${item.nombre} x${item.cantidad} ($${item.subtotal})\n`;
+    carrito.forEach((item) => {
+      mensaje += `- ${item.nombre} x${item.cantidad} ($${item.subtotal})\n`;
+    });
+
+    const totalSinDescuento = carrito.reduce(
+      (acc, item) => acc + item.subtotal,
+      0
+    );
+    let total = totalSinDescuento;
+
+    if (typeof porcentajeDescuento === "number" && porcentajeDescuento > 0) {
+      const descuento = (totalSinDescuento * porcentajeDescuento) / 100;
+      total = totalSinDescuento - descuento;
+      mensaje += `\nDescuento aplicado: ${porcentajeDescuento}% (-$${descuento.toFixed(
+        2
+      )})\n`;
+    }
+
+    mensaje += `Total: $${total.toFixed(2)}\n\n`;
+
+    // 🧾 Datos del cliente
+    mensaje += "Datos del cliente:\n";
+    mensaje += `Cliente: ${datos.nombre || "-"}\n`;
+    mensaje += `DNI: ${datos.dni || "-"}\n`;
+    mensaje += `Email: ${datos.email || "-"}\n`;
+    mensaje += `Teléfono: ${datos.celular || datos.telefono || "-"}\n`;
+    mensaje += `Método de envío: ${datos.envio || "-"}\n`;
+    mensaje += `¿Quién recibe?: ${datos.recibe || "-"}\n`;
+    mensaje += `Método de pago: ${datos.pago || "-"}\n`;
+    mensaje += `¿Autoriza publicación?: ${datos.publicidad || "-"}\n`;
+    mensaje += `¿Factura C?: ${datos.factura || "-"}\n`;
+
+    // 🏠 Datos de envío (si aplica)
+    if (datos.envio && datos.envio.toLowerCase().includes("correo")) {
+      mensaje += "\nDatos de envío:\n";
+      mensaje += `Envío por: ${datos.envioPor || "-"}\n`;
+      mensaje += `Dirección: ${datos.calle || "-"} ${datos.numero || ""}\n`;
+      if (datos.piso || datos.departamento)
+        mensaje += `Piso/Depto: ${datos.piso || ""}${
+          datos.departamento ? " / " + datos.departamento : ""
+        }\n`;
+      if (datos.entreCalles) mensaje += `Entre calles: ${datos.entreCalles}\n`;
+      mensaje += `Localidad: ${datos.localidad || "-"}\n`;
+      mensaje += `Provincia: ${datos.provincia || "-"}\n`;
+      mensaje += `Código Postal: ${datos.codigoPostal || "-"}\n`;
+      if (datos.comentarios) mensaje += `Comentarios: ${datos.comentarios}\n`;
+    }
+
+    // ✅ Enviar por WhatsApp
+    const telefonoVendedor = "5491126116298";
+    const urlWhatsapp = `https://wa.me/${telefonoVendedor}?text=${encodeURIComponent(
+      mensaje
+    )}`;
+    window.open(urlWhatsapp, "_blank");
+
+    // 🔄 Limpiar carrito y formulario
+    localStorage.removeItem("carrito");
+    carrito = [];
+    actualizarCarrito();
+    if (typeof cargarProductos === "function")
+      productos = await cargarProductos();
+    if (typeof mostrarProductos === "function") mostrarProductos(productos);
+
+    // ✅ Confirmación visual
+    const contenedor = document.getElementById("form-datos").parentElement;
+    let mensajeConfirmacion = document.getElementById("mensaje-confirmacion");
+    if (!mensajeConfirmacion) {
+      mensajeConfirmacion = document.createElement("p");
+      mensajeConfirmacion.id = "mensaje-confirmacion";
+      mensajeConfirmacion.style.fontWeight = "bold";
+      mensajeConfirmacion.style.color = "#e8499a";
+      contenedor.appendChild(mensajeConfirmacion);
+    }
+    mensajeConfirmacion.textContent =
+      "¡Gracias por tu pedido! Muy pronto nos pondremos en contacto.";
+
+    setTimeout(() => {
+      mensajeConfirmacion.textContent = "";
+    }, 10000);
+
+    this.reset();
   });
-
-  const totalSinDescuento = carrito.reduce((acc, item) => acc + item.subtotal, 0);
-  let total = totalSinDescuento;
-
-  if (typeof porcentajeDescuento === "number" && porcentajeDescuento > 0) {
-    const descuento = (totalSinDescuento * porcentajeDescuento) / 100;
-    total = totalSinDescuento - descuento;
-    mensaje += `\nDescuento aplicado: ${porcentajeDescuento}% (-$${descuento.toFixed(2)})\n`;
-  }
-
-  mensaje += `Total: $${total.toFixed(2)}\n\n`;
-
-  // 🧾 Datos del cliente
-  mensaje += "Datos del cliente:\n";
-  mensaje += `Cliente: ${datos.nombre || "-"}\n`;
-  mensaje += `DNI: ${datos.dni || "-"}\n`;
-  mensaje += `Email: ${datos.email || "-"}\n`;
-  mensaje += `Teléfono: ${datos.celular || datos.telefono || "-"}\n`;
-  mensaje += `Método de envío: ${datos.envio || "-"}\n`;
-  mensaje += `¿Quién recibe?: ${datos.recibe || "-"}\n`;
-  mensaje += `Método de pago: ${datos.pago || "-"}\n`;
-  mensaje += `¿Autoriza publicación?: ${datos.publicidad || "-"}\n`;
-  mensaje += `¿Factura C?: ${datos.factura || "-"}\n`;
-
-  // 🏠 Datos de envío (si aplica)
-  if (datos.envio && datos.envio.toLowerCase().includes("correo")) {
-    mensaje += "\nDatos de envío:\n";
-    mensaje += `Envío por: ${datos.envioPor || "-"}\n`;
-    mensaje += `Dirección: ${datos.calle || "-"} ${datos.numero || ""}\n`;
-    if (datos.piso || datos.departamento)
-      mensaje += `Piso/Depto: ${datos.piso || ""}${datos.departamento ? " / " + datos.departamento : ""}\n`;
-    if (datos.entreCalles) mensaje += `Entre calles: ${datos.entreCalles}\n`;
-    mensaje += `Localidad: ${datos.localidad || "-"}\n`;
-    mensaje += `Provincia: ${datos.provincia || "-"}\n`;
-    mensaje += `Código Postal: ${datos.codigoPostal || "-"}\n`;
-    if (datos.comentarios) mensaje += `Comentarios: ${datos.comentarios}\n`;
-  }
-
-  // ✅ Enviar por WhatsApp
-  const telefonoVendedor = "5491126116298";
-  const urlWhatsapp = `https://wa.me/${telefonoVendedor}?text=${encodeURIComponent(mensaje)}`;
-  window.open(urlWhatsapp, "_blank");
-
-  // 🔄 Limpiar carrito y formulario
-  localStorage.removeItem("carrito");
-  carrito = [];
-  actualizarCarrito();
-  if (typeof cargarProductos === "function") productos = await cargarProductos();
-  if (typeof mostrarProductos === "function") mostrarProductos(productos);
-
-  // ✅ Confirmación visual
-  const contenedor = document.getElementById("form-datos").parentElement;
-  let mensajeConfirmacion = document.getElementById("mensaje-confirmacion");
-  if (!mensajeConfirmacion) {
-    mensajeConfirmacion = document.createElement("p");
-    mensajeConfirmacion.id = "mensaje-confirmacion";
-    mensajeConfirmacion.style.fontWeight = "bold";
-    mensajeConfirmacion.style.color = "#e8499a";
-    contenedor.appendChild(mensajeConfirmacion);
-  }
-  mensajeConfirmacion.textContent = "¡Gracias por tu pedido! Muy pronto nos pondremos en contacto.";
-
-  setTimeout(() => {
-    mensajeConfirmacion.textContent = "";
-  }, 10000);
-
-  this.reset();
-});
 
 function cambiarCantidad(id, cambio) {
   // Soporta ids con variacion: "P002-rosa" o "P002-Albedo-Mixto"
@@ -409,7 +484,7 @@ function cambiarCantidad(id, cambio) {
   let variacion2 = null;
 
   // Extrae variaciones del id del carrito
-  const partes = id.split('-');
+  const partes = id.split("-");
   baseId = partes[0];
   if (partes.length === 3) {
     variacion1 = partes[1];
@@ -418,16 +493,18 @@ function cambiarCantidad(id, cambio) {
     variacion1 = partes[1];
   }
 
-  const producto = productos.find(p => p.id === baseId);
-  const item = carrito.find(p => p.id === id);
+  const producto = productos.find((p) => p.id === baseId);
+  const item = carrito.find((p) => p.id === id);
 
   if (!producto || !item) return;
 
   let stock = producto.stock;
   let precio = producto.precio;
   if (producto.variaciones && producto.variaciones.length > 0 && variacion1) {
-    const variacion = producto.variaciones.find(v =>
-      v.variacion1 === variacion1 && (variacion2 ? v.variacion2 === variacion2 : true)
+    const variacion = producto.variaciones.find(
+      (v) =>
+        v.variacion1 === variacion1 &&
+        (variacion2 ? v.variacion2 === variacion2 : true)
     );
     if (variacion) {
       stock = variacion.Stock || variacion.stock || producto.stock;
@@ -439,7 +516,7 @@ function cambiarCantidad(id, cambio) {
 
   if (nuevaCantidad < 1) return;
   if (nuevaCantidad > stock) {
-    alert('No hay suficiente stock disponible');
+    alert("No hay suficiente stock disponible");
     return;
   }
 
@@ -451,42 +528,43 @@ function cambiarCantidad(id, cambio) {
   actualizarCarrito();
 }
 
-
 function guardarCarrito() {
-  localStorage.setItem('carrito', JSON.stringify(carrito));
+  localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
 function mostrarAlerta() {
-  const alerta = document.getElementById('alerta');
-  alerta.style.display = 'block';
+  const alerta = document.getElementById("alerta");
+  alerta.style.display = "block";
   setTimeout(() => {
-    alerta.style.display = 'none';
+    alerta.style.display = "none";
   }, 1500);
 }
 
 function abrirModal() {
-  document.getElementById('modal-carrito').style.display = 'block';
+  document.getElementById("modal-carrito").style.display = "block";
 }
 
 function cerrarModal() {
-  document.getElementById('modal-carrito').style.display = 'none';
+  document.getElementById("modal-carrito").style.display = "none";
 }
 
 function filtrarProductos() {
-  const texto = document.getElementById('buscador').value.toLowerCase();
-  const productosFiltrados = productos.filter(p => p.nombre.toLowerCase().includes(texto));
+  const texto = document.getElementById("buscador").value.toLowerCase();
+  const productosFiltrados = productos.filter((p) =>
+    p.nombre.toLowerCase().includes(texto)
+  );
   mostrarProductos(productosFiltrados);
 }
 
 function ordenarProductos() {
-  const filtro = document.getElementById('filtro').value;
+  const filtro = document.getElementById("filtro").value;
   let productosOrdenados = [...productos];
 
-  if (filtro === 'precio-asc') {
+  if (filtro === "precio-asc") {
     productosOrdenados.sort((a, b) => a.precio - b.precio);
-  } else if (filtro === 'precio-desc') {
+  } else if (filtro === "precio-desc") {
     productosOrdenados.sort((a, b) => b.precio - a.precio);
-  } else if (filtro === 'nombre') {
+  } else if (filtro === "nombre") {
     productosOrdenados.sort((a, b) => a.nombre.localeCompare(b.nombre));
   }
 
@@ -498,34 +576,34 @@ let indiceImagenCarrusel = 0;
 
 // AGREGA ESTA FUNCIÓN PARA CERRAR EL MODAL DETALLE
 function cerrarDetalle() {
-  document.getElementById('modal-detalle').style.display = 'none';
+  document.getElementById("modal-detalle").style.display = "none";
 }
 
 // Carrusel Banner
-document.addEventListener('DOMContentLoaded', () => {
-  const slides = document.querySelectorAll('.banner-slide');
-  const puntosCont = document.getElementById('banner-puntos');
+document.addEventListener("DOMContentLoaded", () => {
+  const slides = document.querySelectorAll(".banner-slide");
+  const puntosCont = document.getElementById("banner-puntos");
   let actual = 0;
 
   // Crear puntos
   slides.forEach((_, i) => {
-    const punto = document.createElement('span');
+    const punto = document.createElement("span");
     punto.onclick = () => mostrarSlide(i);
     puntosCont.appendChild(punto);
   });
 
   function mostrarSlide(idx) {
     slides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === idx);
-      puntosCont.children[i].classList.toggle('activo', i === idx);
+      slide.classList.toggle("active", i === idx);
+      puntosCont.children[i].classList.toggle("activo", i === idx);
     });
     actual = idx;
   }
 
-  document.getElementById('banner-prev').onclick = () => {
+  document.getElementById("banner-prev").onclick = () => {
     mostrarSlide((actual - 1 + slides.length) % slides.length);
   };
-  document.getElementById('banner-next').onclick = () => {
+  document.getElementById("banner-next").onclick = () => {
     mostrarSlide((actual + 1) % slides.length);
   };
 
@@ -543,15 +621,20 @@ function aplicarDescuento(porcentaje) {
   actualizarCarrito();
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function () {
   const envioSelect = document.querySelector('select[name="envio"]');
   const pagoSelect = document.querySelector('select[name="pago"]');
 
   function actualizarOpcionesPago() {
     // Verifica si ya existe la opción "Efectivo"
-    let efectivoOption = Array.from(pagoSelect.options).find(opt => opt.value === "Efectivo");
+    let efectivoOption = Array.from(pagoSelect.options).find(
+      (opt) => opt.value === "Efectivo"
+    );
 
-    if (envioSelect.value === "Punto de retiro" || envioSelect.value === "Evento") {
+    if (
+      envioSelect.value === "Punto de retiro" ||
+      envioSelect.value === "Evento"
+    ) {
       // Si no existe, la agrega
       if (!efectivoOption) {
         const option = document.createElement("option");
@@ -577,20 +660,22 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // 🔽 Mostrar/ocultar campo "¿Quién recibe?" según método de envío
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   const selectEnvio = document.querySelector('select[name="envio"]');
-  const campoRecibe = document.querySelector('input[name="recibe"]').closest('div');
+  const campoRecibe = document
+    .querySelector('input[name="recibe"]')
+    .closest("div");
 
   // Función para controlar la visibilidad
   function toggleCampoRecibe() {
     const valor = selectEnvio.value;
-    if (valor === 'Punto de retiro' || valor === 'Evento') {
-      campoRecibe.style.display = 'block';
-      campoRecibe.querySelector('input').required = true;
+    if (valor === "Punto de retiro" || valor === "Evento") {
+      campoRecibe.style.display = "block";
+      campoRecibe.querySelector("input").required = true;
     } else {
-      campoRecibe.style.display = 'none';
-      campoRecibe.querySelector('input').required = false;
-      campoRecibe.querySelector('input').value = ''; // limpia el valor si se oculta
+      campoRecibe.style.display = "none";
+      campoRecibe.querySelector("input").required = false;
+      campoRecibe.querySelector("input").value = ""; // limpia el valor si se oculta
     }
   }
 
@@ -598,29 +683,31 @@ document.addEventListener('DOMContentLoaded', () => {
   toggleCampoRecibe();
 
   // Escucha los cambios
-  selectEnvio.addEventListener('change', toggleCampoRecibe);
+  selectEnvio.addEventListener("change", toggleCampoRecibe);
 });
 
 // 🔽 Mostrar/ocultar campos de datos de envío
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   const selectEnvio = document.querySelector('select[name="envio"]');
-  const bloqueEnvio = document.getElementById('datosEnvio');
+  const bloqueEnvio = document.getElementById("datosEnvio");
 
   function toggleDatosEnvio() {
     const valor = selectEnvio.value;
-    if (valor === 'Envío por correo') {
-      bloqueEnvio.style.display = 'block';
+    if (valor === "Envío por correo") {
+      bloqueEnvio.style.display = "block";
       // Hacemos que los campos sean obligatorios
-      bloqueEnvio.querySelectorAll('input, select').forEach(input => {
-        if (input.name !== 'piso') input.required = true; // el piso sigue siendo opcional
+      bloqueEnvio.querySelectorAll("input, select").forEach((input) => {
+        if (input.name !== "piso") input.required = true; // el piso sigue siendo opcional
       });
     } else {
-      bloqueEnvio.style.display = 'none';
+      bloqueEnvio.style.display = "none";
       // Limpiamos y quitamos requerimiento
-      bloqueEnvio.querySelectorAll('input, select, textarea').forEach(input => {
-        input.required = false;
-        input.value = '';
-      });
+      bloqueEnvio
+        .querySelectorAll("input, select, textarea")
+        .forEach((input) => {
+          input.required = false;
+          input.value = "";
+        });
     }
   }
 
@@ -628,5 +715,5 @@ document.addEventListener('DOMContentLoaded', () => {
   toggleDatosEnvio();
 
   // Escucha los cambios
-  selectEnvio.addEventListener('change', toggleDatosEnvio);
+  selectEnvio.addEventListener("change", toggleDatosEnvio);
 });
