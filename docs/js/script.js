@@ -378,9 +378,7 @@ function actualizarCarrito() {
   }
 }
 
-document
-  .getElementById("form-datos")
-  .addEventListener("submit", async function (e) {
+  document.getElementById("form-datos").addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const formData = new FormData(this);
@@ -502,40 +500,35 @@ document
   });
 
 function cambiarCantidad(id, cambio) {
-  // Soporta ids con variacion: "P002-rosa" o "P002-Albedo-Mixto"
-  let baseId = id;
-  let variacion1 = null;
-  let variacion2 = null;
-
-  // Extrae variaciones del id del carrito
-  const partes = id.split("-");
-  baseId = partes[0];
-  if (partes.length === 3) {
-    variacion1 = partes[1];
-    variacion2 = partes[2];
-  } else if (partes.length === 2) {
-    variacion1 = partes[1];
-  }
-
-  const producto = productos.find((p) => p.id === baseId);
+  // El ID del carrito es (ID_PRODUCTO_BASE)-(NOMBRE_VARIACIÓN)
   const item = carrito.find((p) => p.id === id);
+  if (!item) return; // Extraer el ID base del producto (ej: 'P002' de 'P002-x1 unidad (2 CM)')
 
-  if (!producto || !item) return;
+  const baseId = id.split("-")[0];
+  const producto = productos.find((p) => p.id === baseId);
+  if (!producto) return;
 
   let stock = producto.stock;
-  let precio = producto.precio;
-  if (producto.variaciones && producto.variaciones.length > 0 && variacion1) {
+  let precio = producto.precio; // --- Lógica de Variación Corregida --- // 1. Si el ID tiene un guión, implica que hay una variación.
+
+  if (
+    id.includes("-") &&
+    producto.variaciones &&
+    producto.variaciones.length > 0
+  ) {
+    // 2. Extraemos el nombre completo de la variación del ID del carrito.
+    const nombreVariacion = id.substring(baseId.length + 1); // 3. Buscamos la variación dentro del array del producto usando la propiedad 'nombre'.
+
     const variacion = producto.variaciones.find(
-      (v) =>
-        v.variacion1 === variacion1 &&
-        (variacion2 ? v.variacion2 === variacion2 : true)
+      (v) => v.nombre === nombreVariacion
     );
+
     if (variacion) {
+      // 4. Asignamos correctamente el stock y el precio de la variación.
       stock = variacion.Stock || variacion.stock || producto.stock;
       if (variacion.precio) precio = variacion.precio;
     }
-  }
-
+  } // --- Fin Lógica de Variación ---
   const nuevaCantidad = item.cantidad + cambio;
 
   if (nuevaCantidad < 1) return;
@@ -545,8 +538,8 @@ function cambiarCantidad(id, cambio) {
   }
 
   item.cantidad = nuevaCantidad;
-  item.precio = precio; // Asegura que el precio sea el correcto para la variante
-  item.subtotal = precio * nuevaCantidad;
+  item.precio = precio; // Esto asegura que el precio de la variación se mantenga.
+  item.subtotal = precio * nuevaCantidad; // Recalcula subtotal con el precio correcto.
 
   guardarCarrito();
   actualizarCarrito();
