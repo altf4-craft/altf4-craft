@@ -392,27 +392,55 @@ document
       return;
     }
 
+    // --- CÁLCULO DE TOTAL (Esto queda igual) ---
+    const totalSinDescuento = carrito.reduce(
+      (acc, item) => acc + item.subtotal,
+      0
+    );
+    let totalFinal = totalSinDescuento;
+    let descuentoAplicado = 0;
+    const TOPE_DESCUENTO = 20000;
+
+    if (typeof porcentajeDescuento === "number" && porcentajeDescuento > 0) {
+      const descuentoCalculado =
+        (totalSinDescuento * porcentajeDescuento) / 100;
+      descuentoAplicado =
+        descuentoCalculado > TOPE_DESCUENTO
+          ? TOPE_DESCUENTO
+          : descuentoCalculado;
+      totalFinal = totalSinDescuento - descuentoAplicado;
+    }
+
+    // --- VALIDACIÓN DE MÍNIMOS (¡Aquí llamamos a la nueva función!) ---
+
+    const envioSeleccionado = datos.envio;
+    const errorMensaje = validarMinimoCompra(totalFinal, envioSeleccionado);
+
+    // Si la función devolvió un mensaje de error, lo mostramos y detenemos
+    if (errorMensaje) {
+      alert(errorMensaje);
+      return;
+    }
+
+    // --- FIN DE VALIDACIÓN ---
+
+    // El resto de la función sigue exactamente igual...
     let mensaje = "¡Hola! Quiero realizar un pedido:\n\n";
 
     carrito.forEach((item) => {
       mensaje += `- ${item.nombre} x${item.cantidad} ($${item.subtotal})\n`;
     });
 
-    const totalSinDescuento = carrito.reduce(
-      (acc, item) => acc + item.subtotal,
-      0
-    );
-    let total = totalSinDescuento;
-
-    if (typeof porcentajeDescuento === "number" && porcentajeDescuento > 0) {
-      const descuento = (totalSinDescuento * porcentajeDescuento) / 100;
-      total = totalSinDescuento - descuento;
-      mensaje += `\nDescuento aplicado: ${porcentajeDescuento}% (-$${descuento.toFixed(
+    if (descuentoAplicado > 0) {
+      mensaje += `\nDescuento aplicado: ${porcentajeDescuento}% (-$${descuentoAplicado.toFixed(
         2
       )})\n`;
     }
 
-    mensaje += `Total: $${total.toFixed(2)}\n\n`;
+    mensaje += `Total: $${totalFinal.toFixed(2)}\n\n`;
+
+    // (El resto del código para armar el mensaje de datos, WhatsApp, etc. sigue igual)
+    // ...
 
     // 🧾 Datos del cliente
     mensaje += "Datos del cliente:\n";
@@ -424,9 +452,8 @@ document
     mensaje += `¿Quién recibe?: ${datos.recibe || "-"}\n`;
     mensaje += `Método de pago: ${datos.pago || "-"}\n`;
     mensaje += `¿Autoriza publicación?: ${datos.publicidad || "-"}\n`;
-    mensaje += `¿Factura C?: ${datos.factura || "-"}\n`;
+    mensaje += `¿Factura C?: ${datos.factura || "-"}\n`; // 🏠 Datos de envío (si aplica)
 
-    // 🏠 Datos de envío (si aplica)
     if (datos.envio && datos.envio.toLowerCase().includes("correo")) {
       mensaje += "\nDatos de envío:\n";
       mensaje += `Envío por: ${datos.envioPor || "-"}\n`;
@@ -440,24 +467,21 @@ document
       mensaje += `Provincia: ${datos.provincia || "-"}\n`;
       mensaje += `Código Postal: ${datos.codigoPostal || "-"}\n`;
       if (datos.comentarios) mensaje += `Comentarios: ${datos.comentarios}\n`;
-    }
+    } // ✅ Enviar por WhatsApp
 
-    // ✅ Enviar por WhatsApp
     const telefonoVendedor = "5491126116298";
     const urlWhatsapp = `https://wa.me/${telefonoVendedor}?text=${encodeURIComponent(
       mensaje
     )}`;
-    window.open(urlWhatsapp, "_blank");
+    window.open(urlWhatsapp, "_blank"); // 🔄 Limpiar carrito y formulario
 
-    // 🔄 Limpiar carrito y formulario
     localStorage.removeItem("carrito");
     carrito = [];
     actualizarCarrito();
     if (typeof cargarProductos === "function")
       productos = await cargarProductos();
-    if (typeof mostrarProductos === "function") mostrarProductos(productos);
+    if (typeof mostrarProductos === "function") mostrarProductos(productos); // ✅ Confirmación visual
 
-    // ✅ Confirmación visual
     const contenedor = document.getElementById("form-datos").parentElement;
     let mensajeConfirmacion = document.getElementById("mensaje-confirmacion");
     if (!mensajeConfirmacion) {
@@ -717,3 +741,33 @@ document.addEventListener("DOMContentLoaded", () => {
   // Escucha los cambios
   selectEnvio.addEventListener("change", toggleDatosEnvio);
 });
+
+/**
+ * Valida si el total del carrito cumple con los mínimos de compra
+ * según el método de envío seleccionado.
+ * @param {number} totalFinal - El monto total que el cliente pagará (con descuentos).
+ * @param {string} metodoEnvio - El método de envío (ej: "Envío por correo").
+ * @returns {string | null} - Devuelve un mensaje de error si no cumple, o null si es válido.
+ */
+function validarMinimoCompra(totalFinal, metodoEnvio) {
+  const MIN_CORREO = 15000;
+  const MIN_RETIRO = 4000;
+
+  if (metodoEnvio === "Envío por correo" && totalFinal < MIN_CORREO) {
+    return `El mínimo de compra para "Envío por correo" es de $${MIN_CORREO}. Tu total actual es $${totalFinal.toFixed(
+      2
+    )}.`;
+  }
+
+  if (
+    (metodoEnvio === "Punto de retiro" || metodoEnvio === "Evento") &&
+    totalFinal < MIN_RETIRO
+  ) {
+    return `El mínimo de compra para "${metodoEnvio}" es de $${MIN_RETIRO}. Tu total actual es $${totalFinal.toFixed(
+      2
+    )}.`;
+  }
+
+  // Si pasa todas las validaciones, no devuelve ningún error
+  return null;
+}
