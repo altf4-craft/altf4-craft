@@ -569,7 +569,7 @@ button:hover {
 
 #aplicar-cupon {
   padding: 8px 14px;
-  background-color: #e8499a;
+  background-color: #c7a2cd;
   color: white;
   border: none;
   border-radius: 6px;
@@ -577,7 +577,7 @@ button:hover {
 }
 
 #aplicar-cupon:hover {
-  background-color: #d63f8a;
+  background-color: #d5bbd9;
 }
 
 #mensaje-cupon {
@@ -592,3 +592,64 @@ button:hover {
   border-radius: 8px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
 }
+
+/* --- Estilos para los botones de Navegación del Header --- */
+
+header a {
+  /* Propiedades básicas del botón */
+  display: inline-block; /* Permite ancho, alto y padding */
+  padding: 10px 20px;
+  margin: 0 5px; /* Espacio entre los botones */
+  border: none;
+  border-radius: 8px; /* Bordes redondeados */
+  font-size: 1em;
+  font-weight: bold;
+  text-decoration: none; /* Quita el subrayado de los enlaces */
+  text-align: center;
+  cursor: pointer; /* Indica que es clickeable */
+
+  /* Colores - Adaptados a tu web */
+  background-color: #d5bbd9; /* El rosa de tu marca */
+  color: white; /* Texto blanco */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sutil sombra para profundidad */
+
+  /* Transiciones para efectos suaves */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
+}
+
+/* Efecto al pasar el mouse (hover) */
+header a:hover {
+  background-color: #d5bbd9; /* Un rosa ligeramente más claro o vibrante */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3), /* Sombra más pronunciada */
+              0 0 15px rgba(232, 73, 229, 0.7); /* Efecto de "iluminado" rosa */
+  transform: translateY(-2px); /* Un pequeño levantamiento */
+}
+
+/* Efecto al hacer click (active) */
+header a:active {
+  transform: translateY(0); /* Vuelve a su posición original al clickear */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra más pequeña para simular "hundimiento" */
+}
+
+/* Estilo específico para el botón "Volver a Inicio" en faqs.html si es diferente */
+/* NOTA: Si este botón es parte de la navegación principal, el estilo de arriba ya le aplica.
+   Si lo quieres diferente, puedes usar su clase `volver-inicio`.
+   Por ahora, el estilo de `header nav a` le aplicará. */
+/*
+.volver-inicio {
+  background-color: #c7a2cd; 
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
+}
+
+.volver-inicio:hover {
+  background-color: #c7a2cd;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3), 
+              0 0 15px rgba(232, 73, 154, 0.7);
+  transform: translateY(-2px);
+}
+*/

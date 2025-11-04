@@ -1,0 +1,86 @@
+[
+  {
+    "pregunta": "¿De dónde son?",
+    "respuesta": "Somos de Villa Devoto, Capital Federal, Argentina."
+  },
+  {
+    "pregunta": "¿Por qué medios puedo contactarme?",
+    "respuesta": "Podés contactarte con nosotros por medio de mensajes en Whatsapp +549-11-2611-6298, E-mail altf4.craft@gmail.com, o por medio de Instagram @altf4.craft."
+  },
+  {
+    "pregunta": "¿Cuál es el horario de atención?",
+    "respuesta": "Nuestro horario de atención es de Lunes a Jueves de 18 hs a 20:00 hs, Viernes de 15 hs a 19:00 hs y Sábados de 13 hs a 18 hs."
+  },
+  {
+    "pregunta": "¿Venden por cantidad?",
+    "respuesta": "Sí. Realizamos venta por cantidad."
+  },
+  {
+    "pregunta": "¿Tienen punto de retiro?",
+    "respuesta": "Sí. Es en NeoTokyo Showroom."
+  },
+  {
+    "pregunta": "¿Hacen productos personalizados?",
+    "respuesta": "Sí, hacemos productos personalizados."
+  },
+  {
+    "pregunta": "¿Cómo hago para encontrar rápidamente lo que estoy buscando?",
+    "respuesta": "Utilizando el buscador en la parte superior de la pantalla, ingresando el nombre del producto."
+  },
+  {
+    "pregunta": "¿Cómo hago para realizar una compra?",
+    "respuesta": "En nuestra tienda podés navegar por los diferentes sectores en el menú, agregar los productos al carrito y seguir el proceso de compra."
+  },
+  {
+    "pregunta": "¿Hay un monto mínimo de compra?",
+    "respuesta": "Para punto de Retiro/evento es de $4000 y para envio por correo es de $15000."
+  },
+  {
+    "pregunta": "¿Puedo comprar si soy menor de edad?",
+    "respuesta": "Si sos menor de edad, necesitás ayuda de un adulto para realizar la compra."
+  },
+  {
+    "pregunta": "¿Cómo hago para eliminar un producto del carrito?",
+    "respuesta": "En el ícono de la bolsa en la parte superior, cada producto tendrá una 'X' para eliminarlo."
+  },
+  {
+    "pregunta": "¿Cómo puedo abonar mi pedido?",
+    "respuesta": "Por Mercado Pago, UALA o Cuenta DNI (solo por mensaje directo) o Efectivo el 50% restante de la compra en punto de retiro o evento (el primer 50% de seña es por transferencia)."
+  },
+  {
+    "pregunta": "¿Dónde puedo retirar el pedido personalmente?",
+    "respuesta": "En Showroom NeoTokyo. También en eventos en los que participemos."
+  },
+  {
+    "pregunta": "¿Si elegí opción de retiro en el showroom NeoTokyo, cuándo puedo retirar el pedido?",
+    "respuesta": "Podés retirarlo una vez que se te avise que está listo."
+  },
+  {
+    "pregunta": "¿Hacen envíos?",
+    "respuesta": "Sí, realizamos envíos a todo el país por Correo Andreani, Correo Argentino y E-pick."
+  },
+  {
+    "pregunta": "¿Puedo elegir un horario para recibirlo?",
+    "respuesta": "No, ya que los servicios de entrega tienen recorridos programados."
+  },
+  {
+    "pregunta": "¿Qué pasa si no hay nadie para recibir mi pedido?",
+    "respuesta": "Se intentará entregar nuevamente. Si no se encuentra nadie en la segunda visita, el paquete se devuelve y deberá coordinarse un nuevo envío con costo adicional."
+  },
+  {
+    "pregunta": "¿Quién puede recibir mi pedido?",
+    "respuesta": "Cualquier persona mayor de 18 años en el domicilio indicado."
+  },
+  {
+    "pregunta": "¿Cuánto cuesta el envío?",
+    "respuesta": "Se sabe el monto exacto en el momento que la compra este lista para el envio y una vez abonado el total de la misma."
+  },
+  {
+    "pregunta": "Si ya pagué, ¿cuánto tiempo tengo para retirarlo?",
+    "respuesta": "Tu pedido se guardará durante 30 días hábiles."
+  },
+  {
+    "pregunta": "¿Mis datos quedan protegidos al realizar una compra?",
+    "respuesta": "Sí, garantizamos una compra segura cumpliendo con estándares internacionales de protección de datos."
+  }
+]

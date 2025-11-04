@@ -1,0 +1,75 @@
+/* --- Estilos para la Sección FAQ --- */
+
+.faq-seccion {
+  max-width: 800px; 
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.faq-seccion h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.faq-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  overflow: hidden; 
+}
+
+.faq-pregunta { /* Este es el <summary> */
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #444;
+  padding: 15px 20px;
+  cursor: pointer;
+  display: block; 
+  position: relative;
+  list-style: none; /* Oculta el triángulo/marcador por defecto */
+}
+
+/* --- Añade una flecha con CSS --- */
+.faq-pregunta::after {
+  content: '▼'; /* Flecha hacia abajo */
+  position: absolute;
+  right: 20px;
+  font-size: 0.8em;
+  transition: transform 0.2s ease;
+}
+
+/* Cuando el <details> está abierto, gira la flecha */
+.faq-item[open] .faq-pregunta::after {
+  transform: rotate(180deg); /* Flecha hacia arriba */
+}
+
+/* Oculta el marcador de flecha nativo de Chrome/Safari */
+.faq-pregunta::-webkit-details-marker {
+  display: none;
+}
+
+.faq-respuesta {
+  padding: 0 20px 20px 20px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Para que la respuesta no aparezca bruscamente */
+.faq-item[open] .faq-respuesta {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
