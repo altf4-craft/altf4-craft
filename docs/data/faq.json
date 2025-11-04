@@ -36,12 +36,8 @@
     "respuesta": "Para punto de Retiro/evento es de $4000 y para envio por correo es de $15000."
   },
   {
-    "pregunta": "¿Puedo comprar si soy menor de edad?",
-    "respuesta": "Si sos menor de edad, necesitás ayuda de un adulto para realizar la compra."
-  },
-  {
     "pregunta": "¿Cómo hago para eliminar un producto del carrito?",
-    "respuesta": "En el ícono de la bolsa en la parte superior, cada producto tendrá una 'X' para eliminarlo."
+    "respuesta": "En el ícono del carrito en la parte superior, cada producto tendrá un boton para eliminarlo."
   },
   {
     "pregunta": "¿Cómo puedo abonar mi pedido?",
