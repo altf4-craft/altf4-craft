@@ -378,7 +378,9 @@ function actualizarCarrito() {
   }
 }
 
-  document.getElementById("form-datos").addEventListener("submit", async function (e) {
+document
+  .getElementById("form-datos")
+  .addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const formData = new FormData(this);
@@ -455,6 +457,7 @@ function actualizarCarrito() {
     if (datos.envio && datos.envio.toLowerCase().includes("correo")) {
       mensaje += "\nDatos de envío:\n";
       mensaje += `Envío por: ${datos.envioPor || "-"}\n`;
+      mensaje += `Tipo de envío: ${datos.tipoEnvio || "-"}\n`;
       mensaje += `Dirección: ${datos.calle || "-"} ${datos.numero || ""}\n`;
       if (datos.piso || datos.departamento)
         mensaje += `Piso/Depto: ${datos.piso || ""}${
@@ -703,36 +706,149 @@ document.addEventListener("DOMContentLoaded", () => {
   selectEnvio.addEventListener("change", toggleCampoRecibe);
 });
 
-// 🔽 Mostrar/ocultar campos de datos de envío
+// 🔽 Mostrar/ocultar campos de datos de envío (Lógica FINAL)
 document.addEventListener("DOMContentLoaded", () => {
-  const selectEnvio = document.querySelector('select[name="envio"]');
-  const bloqueEnvio = document.getElementById("datosEnvio");
+  const selectEnvio = document.querySelector('select[name="envio"]'); // Método principal (Punto de retiro, Envío por correo)
+  const bloqueEnvio = document.getElementById("datosEnvio"); // Contiene el h4, select 'envioPor', y camposDireccionBloque
+  const selectEnvioPor = document.getElementById("envioPor"); // La empresa de correo (Andreani/Argentino/E-pick)
+  const tipoEnvioBloque = document.getElementById("tipoEnvioBloque"); // Contiene el select Sucursal/Domicilio
+  const selectTipoEnvio = document.getElementById("tipoEnvio"); // El select Sucursal/Domicilio
+  const camposDireccionBloque = document.getElementById(
+    "camposDireccionBloque"
+  ); // Bloque de: Calle, Numero, Localidad, etc. // Campos obligatorios SIEMPRE que haya que enviar (Sucursal o Domicilio)
+
+  const camposObligatoriosGenerales = [
+    "provincia",
+    "localidad",
+    "codigoPostal",
+  ]; // Campos obligatorios SOLO si es "A Domicilio"
+  const camposObligatoriosADomicilio = ["calle", "numero"]; // Campos opcionales (Piso, Dpto, Entre Calles)
+  const camposOpcionales = ["piso", "departamento", "entreCalles"]; // Campos que NUNCA deben ocultarse en #camposDireccionBloque (ej: Comentarios)
+  const camposNoOcultables = ["comentarios"];
 
   function toggleDatosEnvio() {
-    const valor = selectEnvio.value;
-    if (valor === "Envío por correo") {
-      bloqueEnvio.style.display = "block";
-      // Hacemos que los campos sean obligatorios
-      bloqueEnvio.querySelectorAll("input, select").forEach((input) => {
-        if (input.name !== "piso") input.required = true; // el piso sigue siendo opcional
-      });
+    const metodoEnvio = selectEnvio.value;
+    const empresaEnvio = selectEnvioPor.value;
+    const tipoEnvio = selectTipoEnvio.value; // --- 1. Determinar condiciones ---
+
+    const esEnvioCorreoPrincipal = metodoEnvio === "Envío por correo";
+    const empresaSeleccionada = empresaEnvio !== "";
+    const requiereTipoEnvioSelect =
+      empresaEnvio === "Correo Argentino" || empresaEnvio === "Correo Andreani";
+    const esEpickODomicilio =
+      empresaEnvio === "E-pick" || tipoEnvio === "A domicilio";
+
+    // Lista de todos los campos que pueden ser ocultados (Calle, Número, Opcionales)
+    const camposOcultables = [
+      ...camposObligatoriosADomicilio,
+      ...camposOpcionales,
+    ]; // --- 2. CONTROL DEL BLOQUE DE ENVÍO (#datosEnvio) que contiene el 'Envío por' ---
+
+    // #datosEnvio (Título + Select Envío por) solo aparece si el método principal es "Envío por correo".
+    if (esEnvioCorreoPrincipal) {
+      bloqueEnvio.style.display = "flex";
+      selectEnvioPor.required = true;
     } else {
       bloqueEnvio.style.display = "none";
-      // Limpiamos y quitamos requerimiento
-      bloqueEnvio
-        .querySelectorAll("input, select, textarea")
-        .forEach((input) => {
-          input.required = false;
-          input.value = "";
+      selectEnvioPor.required = false;
+      selectEnvioPor.value = "";
+      selectTipoEnvio.value = "";
+    } // --- 3. CONTROL DEL SELECT 'TIPO DE ENVÍO' (A sucursal/A domicilio) --- // Solo se muestra si es Correo Argentino o Andreani y ya se seleccionó una empresa (para evitar un parpadeo)
+
+    if (
+      esEnvioCorreoPrincipal &&
+      empresaSeleccionada &&
+      requiereTipoEnvioSelect
+    ) {
+      tipoEnvioBloque.style.display = "block";
+      selectTipoEnvio.required = true;
+    } else {
+      tipoEnvioBloque.style.display = "none";
+      selectTipoEnvio.required = false;
+      selectTipoEnvio.value = "";
+    } // --- 4. CONTROL DEL BLOQUE DE DIRECCIÓN DETALLADA (#camposDireccionBloque) ---
+
+    // El bloque de dirección SÓLO debe mostrarse si:
+    // a) La empresa es E-pick, OR
+    // b) La empresa requiere tipo de envío Y ya se seleccionó una opción válida (Sucursal o Domicilio).
+    const mostrarCamposDireccionBloque =
+      empresaEnvio === "E-pick" ||
+      (requiereTipoEnvioSelect && tipoEnvio !== "");
+
+    if (
+      esEnvioCorreoPrincipal &&
+      empresaSeleccionada &&
+      mostrarCamposDireccionBloque
+    ) {
+      camposDireccionBloque.style.display = "flex"; // Mostrar el bloque completo de campos
+
+      if (esEpickODomicilio) {
+        // A DOMICILIO / E-PICK: Mostrar todos los campos, hacer obligatorios Calle y Número
+        // Mostrar campos ocultables (Calle, Número, Opcionales)
+        camposOcultables.forEach((id) => {
+          const campo = document.getElementById(id);
+          if (campo) campo.closest("div").style.display = "block";
+        }); // Obligatorios: Generales + A Domicilio
+
+        [
+          ...camposObligatoriosGenerales,
+          ...camposObligatoriosADomicilio,
+        ].forEach((id) => {
+          const campo = document.getElementById(id);
+          if (campo) campo.required = true;
         });
+
+        // Opcionales (piso/dpto/entreCalles)
+        camposOpcionales.forEach((id) => {
+          const campo = document.getElementById(id);
+          if (campo) campo.required = false;
+        });
+      } else if (tipoEnvio === "A sucursal") {
+        // A SUCURSAL: Ocultar campos de domicilio, hacer obligatorios solo Generales
+        // Ocultar campos ocultables y limpiar su valor
+        camposOcultables.forEach((id) => {
+          const campo = document.getElementById(id);
+          if (campo) {
+            campo.closest("div").style.display = "none"; // Ocultar el div contenedor
+            campo.required = false;
+            campo.value = "";
+          }
+        }); // Obligatorios: Solo Generales (Provincia, Localidad, C.P.)
+
+        camposObligatoriosGenerales.forEach((id) => {
+          const campo = document.getElementById(id);
+          if (campo) campo.required = true;
+        });
+      }
+    } else {
+      // Ocultar el bloque de dirección detallada y limpiar
+      camposDireccionBloque.style.display = "none"; // Limpiamos la obligatoriedad y los valores de TODOS los campos de dirección
+
+      [
+        ...camposObligatoriosGenerales,
+        ...camposObligatoriosADomicilio,
+        ...camposOpcionales,
+        ...camposNoOcultables,
+      ].forEach((id) => {
+        const campo = document.getElementById(id);
+        if (campo) {
+          campo.required = false;
+          campo.value = "";
+        }
+      });
+      // Aseguramos que los contenedores que se ocultaron vuelvan a 'block' para la próxima vez que se muestre el bloque
+      camposOcultables.forEach((id) => {
+        const campo = document.getElementById(id);
+        if (campo) campo.closest("div").style.display = "block";
+      });
     }
-  }
+  } // Ejecuta al cargar la página
 
-  // Ejecuta al cargar la página
-  toggleDatosEnvio();
+  toggleDatosEnvio(); // Escucha los cambios
 
-  // Escucha los cambios
   selectEnvio.addEventListener("change", toggleDatosEnvio);
+  selectEnvioPor.addEventListener("change", toggleDatosEnvio);
+  selectTipoEnvio.addEventListener("change", toggleDatosEnvio);
 });
 
 /**

@@ -653,3 +653,52 @@ header a:active {
   transform: translateY(-2px);
 }
 */
+
+/* --- ESTILOS ESPECÍFICOS PARA LOS BLOQUES DE ENVÍO DINÁMICOS --- */
+
+/* 1. Contenedor principal de datos de envío (#datosEnvio) */
+/* Aseguramos que se comporte como un contenedor flex para organizar sus hijos (select 'envioPor' y 'camposDireccionBloque') */
+#datosEnvio {
+    /* IMPORTANTE: Tu JS pone display: flex en #datosEnvio. Aseguramos que los ítems se envuelvan */
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 10px; /* Usa el mismo gap que el formulario principal */
+}
+
+/* 2. Bloque que contiene Calle, Número, Localidad, etc. (#camposDireccionBloque) */
+/* Este bloque debe comportarse exactamente igual que el formulario principal para organizar sus campos */
+#camposDireccionBloque {
+    /* IMPORTANTE: Tu JS pone display: flex en #camposDireccionBloque cuando es "A domicilio" o "E-pick" */
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 10px;
+    width: 100%; /* Aseguramos que ocupe todo el ancho disponible */
+}
+
+/* 3. Estilo para los DIVs dentro del bloque de dirección */
+/* Asegura que cada campo ocupe el ancho adecuado, similar a cómo se comporta el resto de tu formulario. */
+#camposDireccionBloque div {
+    /* Por defecto, que los divs de los campos crezcan o tomen un ancho fijo */
+    width: auto; /* Permite que el flexbox controle el tamaño */
+    min-width: 150px; /* Ancho mínimo para que se vean bien */
+    flex-grow: 1; /* Permite que los elementos se expandan si hay espacio */
+}
+
+/* Ajuste específico para el label dentro de estos bloques dinámicos */
+#datosEnvio label {
+    margin-top: 10px; /* Añade un poco de espacio sobre el label */
+}
+
+/* Asegurar que los inputs dentro de los bloques dinámicos ocupen el 100% de su contenedor DIV */
+#datosEnvio input[type="text"],
+#datosEnvio select,
+#datosEnvio textarea {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Corrección para "A sucursal": Asegurar que los campos ocultos no dejen espacio */
+/* Esto debería estar cubierto por el JS que oculta el DIV contenedor, pero es un buen respaldo. */
+#camposDireccionBloque div[style*="display: none"] {
+    display: none !important;
+}
