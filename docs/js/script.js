@@ -880,3 +880,28 @@ function validarMinimoCompra(totalFinal, metodoEnvio) {
   // Si pasa todas las validaciones, no devuelve ningún error
   return null;
 }
+
+// 🔽 Mostrar/ocultar campo DNI según si se selecciona "Sí" en "¿Factura C?"
+document.addEventListener("DOMContentLoaded", () => {
+  const selectFactura = document.querySelector('select[name="factura"]');
+  const campoDNI = document.getElementById("campoDNI");
+  const inputDNI = campoDNI.querySelector("input");
+
+  // Función para controlar la visibilidad del DNI
+  function toggleCampoDNI() {
+    if (selectFactura.value === "Sí") {
+      campoDNI.style.display = "block";
+      inputDNI.required = true;
+    } else {
+      campoDNI.style.display = "none";
+      inputDNI.required = false;
+      inputDNI.value = ""; // Limpia el valor si se oculta
+    }
+  }
+
+  // Ejecuta al cargar la página
+  toggleCampoDNI();
+
+  // Escucha los cambios
+  selectFactura.addEventListener("change", toggleCampoDNI);
+});
