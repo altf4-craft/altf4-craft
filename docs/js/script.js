@@ -885,23 +885,32 @@ function validarMinimoCompra(totalFinal, metodoEnvio) {
 document.addEventListener("DOMContentLoaded", () => {
   const selectFactura = document.querySelector('select[name="factura"]');
   const campoDNI = document.getElementById("campoDNI");
+  // Si no existe el campo, salimos silenciosamente
+  if (!campoDNI) return;
   const inputDNI = campoDNI.querySelector("input");
+  const selectEnvio = document.querySelector('select[name="envio"]');
 
   // Función para controlar la visibilidad del DNI
   function toggleCampoDNI() {
-    if (selectFactura.value === "Sí") {
+    const facturaSi = selectFactura && selectFactura.value === "Sí";
+    const envioCorreo = selectEnvio && selectEnvio.value === "Envío por correo";
+
+    if (facturaSi || envioCorreo) {
       campoDNI.style.display = "block";
-      inputDNI.required = true;
+      if (inputDNI) inputDNI.required = true;
     } else {
       campoDNI.style.display = "none";
-      inputDNI.required = false;
-      inputDNI.value = ""; // Limpia el valor si se oculta
+      if (inputDNI) {
+        inputDNI.required = false;
+        inputDNI.value = ""; // Limpia el valor si se oculta
+      }
     }
   }
 
   // Ejecuta al cargar la página
   toggleCampoDNI();
 
-  // Escucha los cambios
-  selectFactura.addEventListener("change", toggleCampoDNI);
+  // Escucha los cambios en ambos selects
+  if (selectFactura) selectFactura.addEventListener("change", toggleCampoDNI);
+  if (selectEnvio) selectEnvio.addEventListener("change", toggleCampoDNI);
 });
