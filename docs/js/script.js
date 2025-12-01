@@ -4,6 +4,7 @@ let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 // Variable global para guardar el total con descuento
 let totalConDescuento = null;
 let porcentajeDescuento = null;
+let montoDescuento = null;
 
 document.addEventListener("DOMContentLoaded", async () => {
   productos = await cargarProductos();
@@ -331,36 +332,37 @@ function actualizarCarrito() {
 
   // Obtenemos el elemento del mensaje para actualizarlo
   const mensajeCupon = document.getElementById("mensaje-cupon");
-  const TOPE_DESCUENTO = 20000; // <-- 1. Definimos el tope máximo
+  const TOPE_DESCUENTO = 20000; // <-- 1. Definimos el tope máximo (aplica a cupones porcentuales)
 
+  // Si hay un cupón porcentual
   if (typeof porcentajeDescuento === "number" && porcentajeDescuento > 0) {
-    // 2. Calculamos el descuento basado en el porcentaje
     const descuentoCalculado = (total * porcentajeDescuento) / 100;
-
     let descuentoAplicado = descuentoCalculado;
     let mensajeTope = "";
-
-    // 3. Verificamos si el descuento supera el tope
     if (descuentoCalculado > TOPE_DESCUENTO) {
-      descuentoAplicado = TOPE_DESCUENTO; // Lo limitamos al tope
+      descuentoAplicado = TOPE_DESCUENTO;
       mensajeTope = ` (tope de $${TOPE_DESCUENTO} aplicado)`;
     }
-
-    // 4. Calculamos el total final usando el descuento ya limitado
     totalConDescuento = total - descuentoAplicado;
-    document.getElementById(
-      "total"
-    ).textContent = `Total: $${totalConDescuento.toFixed(2)}`;
-    // Mostramos el descuento real aplicado
-    document.getElementById(
-      "descuento-aplicado"
-    ).textContent = `Descuento aplicado: -$${descuentoAplicado.toFixed(2)}`;
-
-    // 5. Actualizamos el mensaje del cupón para reflejar el tope si fue necesario
+    document.getElementById("total").textContent = `Total: $${totalConDescuento.toFixed(2)}`;
+    document.getElementById("descuento-aplicado").textContent = `Descuento aplicado: -$${descuentoAplicado.toFixed(2)}`;
     if (mensajeCupon) {
       mensajeCupon.textContent = `✅ Se aplicó un ${porcentajeDescuento}% de descuento${mensajeTope}.`;
       mensajeCupon.style.color = "green";
     }
+
+  // Si hay un cupón por monto fijo
+  } else if (typeof montoDescuento === "number" && montoDescuento > 0) {
+    const descuentoAplicado = Math.min(montoDescuento, total);
+    totalConDescuento = total - descuentoAplicado;
+    document.getElementById("total").textContent = `Total: $${totalConDescuento.toFixed(2)}`;
+    document.getElementById("descuento-aplicado").textContent = `Descuento aplicado: -$${descuentoAplicado.toFixed(2)}`;
+    if (mensajeCupon) {
+      mensajeCupon.textContent = `✅ Se aplicó un cupón de $${descuentoAplicado.toFixed(2)}.`;
+      mensajeCupon.style.color = "green";
+    }
+
+  // No hay cupón
   } else {
     totalConDescuento = null;
     document.getElementById("total").textContent = `Total: $${total}`;
@@ -375,6 +377,7 @@ function actualizarCarrito() {
     if (mensajeCupon) mensajeCupon.textContent = "";
     totalConDescuento = null;
     porcentajeDescuento = null;
+    montoDescuento = null;
   }
 }
 
@@ -636,8 +639,29 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Modifica la función aplicarDescuento en cupones.js así:
-function aplicarDescuento(porcentaje) {
-  porcentajeDescuento = porcentaje;
+function aplicarDescuento(input) {
+  // input puede ser:
+  // - un número: por compatibilidad, si <=100 se interpreta como porcentaje, si >100 como monto fijo
+  // - un objeto: { tipo: 'porcentaje'|'monto', valor: number }
+  porcentajeDescuento = null;
+  montoDescuento = null;
+
+  if (typeof input === "object" && input !== null) {
+    const tipo = input.tipo;
+    const valor = Number(input.valor) || 0;
+    if (tipo === "monto") {
+      montoDescuento = valor;
+    } else {
+      porcentajeDescuento = valor;
+    }
+  } else if (typeof input === "number") {
+    if (input > 100) {
+      montoDescuento = input;
+    } else {
+      porcentajeDescuento = input;
+    }
+  }
+
   actualizarCarrito();
 }
 
