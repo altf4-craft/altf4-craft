@@ -64,27 +64,6 @@
     "descripcion": "✨En Alt F4 Craft hacemos Pin de acrílico personalizado de 3.8 cm, ideal para emprendedores y marcas que buscan ofrecer merchandising original de calidad. \n\n🔹 Características del producto:\n✔️ Tamaño: 3.8 cm\n✔️ Acrílico de 3 mm de espesor, liviano y resistente\n✔️ Incluye alfiler metálico resistente en la parte trasera para asegurar un agarre firme en mochilas, ropa, totebags o packaging\n✔️ Personalizables con el diseño que nos envíes (logo, ilustración, personaje, etc.) \nPerfecto para vender como merch, incluir en kits, sumar como regalo en compras o reforzar la identidad visual de tu emprendimiento. \n\nProducción por cantidad.\n\n📦 Envíos a todo el país.\n🗓️ Producción según cronograma (se anuncia cada 15 días).",
     "variaciones": [
       {
-        "id": "x1 unidad (3.8 CM)",
-        "nombre": "x1 unidad (3.8 CM)",
-        "imagen": "img/pin3.jpg",
-        "stock": 5,
-        "precio": 3600
-      },
-      {
-        "id": "x5 unidades (3.8 CM)",
-        "nombre": "x5 unidades (3.8 CM)",
-        "imagen": "img/pin3.jpg",
-        "stock": 5,
-        "precio": 16700
-      },
-      {
-        "id": "x10 unidades (3.8 CM)",
-        "nombre": "x10 unidades (3.8 CM)",
-        "imagen": "img/pin3.jpg",
-        "stock": 5,
-        "precio": 29800
-      },
-      {
         "id": "x30 unidades (3.8 CM)",
         "nombre": "x30 unidades (3.8 CM)",
         "imagen": "img/pin3.jpg",
@@ -111,53 +90,11 @@
     "descripcion": "📱✨ Phone Charms de acrílico personalizados ✨📱\n\nEn Alt F4 Craft hacemos Phone Charms de acrílico de 2 y 3 cm, ideales para que emprendedores y marcas ofrezcan su propia merch original. 💼✨\n\n🔹 Características del producto:\n✔️ Tamaño: 2 o 3 cm\n✔️ Acrílico de 3 mm de espesor, liviano y resistente\n✔️ Incluye cordón listo para colocar en celulares, bolsos o estuches\n✔️ Personalizables con el diseño que nos envíes (logo, ilustración, personaje, etc.)\n\n💡 Ventajas para tu emprendimiento:\n✔️ Producción por cantidad (consultá mínimo de unidades)\n✔️ Producto versátil: merchandising, souvenirs, giveaways o ventas en tu tienda online\n✔️ Terminación profesional y de alta calidad\n✔️ Posibilidad de combinar con otros productos (llaveros, standees, stickers) para armar sets completos\n\n🟩Colores disponibles de straps: Blanco, Negro, Verde fluor, Celeste, Azul Francia, Azul Electrico, Lila, Rosa pastel, Fucsia, Rojo, Naranja Fluor, Naranja Pastel, Amarillo pastel y Dorado.\n\n📦 Envíos a todo el país.\n🗓️ Producción según cronograma (se anuncia cada 15 días).",
     "variaciones": [
       {
-        "id": "x1 unidad (2 CM)",
-        "nombre": "x1 unidad (2 CM)",
-        "imagen": "img/charm_personalizado.png",
-        "stock": 5,
-        "precio": 2500
-      },
-      {
-        "id": "x5 unidades (2 CM)",
-        "nombre": "x5 unidades (2 CM)",
-        "imagen": "img/charm_personalizado.png",
-        "stock": 5,
-        "precio": 8800
-      },
-      {
-        "id": "x10 unidades (2 CM)",
-        "nombre": "x10 unidades (2 CM)",
-        "imagen": "img/charm_personalizado.png",
-        "stock": 5,
-        "precio": 14300
-      },
-      {
         "id": "x30 unidades (2 CM)",
         "nombre": "x30 unidades (2 CM)",
         "imagen": "img/charm_personalizado.png",
         "stock": 5,
         "precio": 39600
-      },
-      {
-        "id": "x1 unidad (3 CM)",
-        "nombre": "x1 unidad (3 CM)",
-        "imagen": "img/charm_personalizado.png",
-        "stock": 5,
-        "precio": 3400
-      },
-      {
-        "id": "x5 unidades (3 CM)",
-        "nombre": "x5 unidades (3 CM)",
-        "imagen": "img/charm_personalizado.png",
-        "stock": 5,
-        "precio": 13200
-      },
-      {
-        "id": "x10 unidades (3 CM)",
-        "nombre": "x10 unidades (3 CM)",
-        "imagen": "img/charm_personalizado.png",
-        "stock": 5,
-        "precio": 19800
       },
       {
         "id": "x30 unidades (3 CM)",
@@ -179,53 +116,11 @@
     "descripcion": "🔑✨ Llavero acrílico personalizado ✨🔑\n\nEn Alt F4 Craft hacemos llaveros acrílicos de 4 y 5 cm, pensados especialmente para emprendedores y marcas que quieran ofrecer su propia merch con estilo único. 💼💖\n\n🔹 Características del producto:\n✔️ Tamaño: 4 o 5 cm\n✔️ Acrílico de 3 mm de espesor, resistente y duradero\n✔️ Incluye argolla sin fin listo para usar\n✔️ Personalizables con el diseño que nos envíes (logo, ilustración, personaje, etc.)\n\n💡 Ventajas para tu emprendimiento:\n✔️ Producción por cantidad (consultá mínimo de unidades)\n✔️ Perfectos para merchandising, souvenirs, giveaways o venta en tu tienda online\n✔️ Terminación profesional con alta fidelidad de color\n✔️ Podés combinarlos con otros productos (phone charms, standees, stickers) y armar packs exclusivos\n\n📦 Envíos a todo el país.\n🗓️ Producción según cronograma (se anuncia cada 15 días).",
     "variaciones": [
       {
-        "id": "x1 unidades (4 CM)",
-        "nombre": "x1 unidades (4 CM)",
-        "imagen": "img/llavero_personalizado.png",
-        "stock": 5,
-        "precio": 4500
-      },
-      {
-        "id": "x5 unidades (4 CM)",
-        "nombre": "x5 unidades (4 CM)",
-        "imagen": "img/llavero_personalizado.png",
-        "stock": 5,
-        "precio": 15500
-      },
-      {
-        "id": "x10 unidades (4 CM)",
-        "nombre": "x10 unidades (4 CM)",
-        "imagen": "img/llavero_personalizado.png",
-        "stock": 5,
-        "precio": 26000
-      },
-      {
         "id": "x30 unidades (4 CM)",
         "nombre": "x30 unidades (4 CM)",
         "imagen": "img/llavero_personalizado.png",
         "stock": 5,
         "precio": 72000
-      },
-      {
-        "id": "x1 unidad (5 CM)",
-        "nombre": "x1 unidad (5 CM)",
-        "imagen": "img/llavero_personalizado.png",
-        "stock": 5,
-        "precio": 5300
-      },
-      {
-        "id": "x5 unidades (5 CM)",
-        "nombre": "x5 unidades (5 CM)",
-        "imagen": "img/llavero_personalizado.png",
-        "stock": 5,
-        "precio": 18500
-      },
-      {
-        "id": "x10 unidades (5 CM)",
-        "nombre": "x10 unidades (5 CM)",
-        "imagen": "img/llavero_personalizado.png",
-        "stock": 5,
-        "precio": 29000
       },
       {
         "id": "x30 unidades (5 CM)",
@@ -247,53 +142,11 @@
     "descripcion": "🎨✨ Standee acrílico personalizado ✨🎨\n\nEn Alt F4 Craft creamos standees de acrílico personalizados en dos tamaños (10 cm y 15 cm), ideales para que emprendedores y marcas ofrezcan merch original, vistosa y coleccionable. 💼🌟\n\n🔹 Características del producto:\n✔️ Tamaños disponibles: 10 cm o 15 cm\n✔️ Acrílico de 3 mm de espesor, resistente y con excelente acabado\n✔️ Base acrílica incluida para mantener el standee estable\n✔️ Personalizables con el diseño que nos envíes (logo, ilustración, personaje, etc.)\n\n💡 Ventajas para tu emprendimiento:\n✔️ Producción por cantidad (consultá mínimo de unidades)\n✔️ Producto ideal para coleccionistas, merchandising o promociones especiales\n✔️ Alta fidelidad de impresión y terminación profesional\n✔️ Combinables con otros productos (llaveros, phone charms, stickers) para sets completos\n\n📦 Envíos a todo el país.\n🗓️ Producción según cronograma (se anuncia cada 15 días).",
     "variaciones": [
       {
-        "id": "x1 unidad (10 CM)",
-        "nombre": "x1 unidad (10 CM)",
-        "imagen": "img/standee_personalizado.jpeg",
-        "stock": 5,
-        "precio": 9000
-      },
-      {
-        "id": "x5 unidades (10 CM)",
-        "nombre": "x5 unidades (10 CM)",
-        "imagen": "img/standee_personalizado.jpeg",
-        "stock": 5,
-        "precio": 42500
-      },
-      {
-        "id": "x10 unidades (10 CM)",
-        "nombre": "x10 unidades (10 CM)",
-        "imagen": "img/standee_personalizado.jpeg",
-        "stock": 5,
-        "precio": 75000
-      },
-      {
         "id": "x20 unidades (10 CM)",
         "nombre": "x20 unidades (10 CM)",
         "imagen": "img/standee_personalizado.jpeg",
         "stock": 5,
         "precio": 120000
-      },
-      {
-        "id": "x1 unidad (15 CM)",
-        "nombre": "x1 unidad (15 CM)",
-        "imagen": "img/standee_personalizado.jpeg",
-        "stock": 5,
-        "precio": 14000
-      },
-      {
-        "id": "x5 unidades (15 CM)",
-        "nombre": "x5 unidades (15 CM)",
-        "imagen": "img/standee_personalizado.jpeg",
-        "stock": 5,
-        "precio": 63750
-      },
-      {
-        "id": "x10 unidades (15 CM)",
-        "nombre": "x10 unidades (15 CM)",
-        "imagen": "img/standee_personalizado.jpeg",
-        "stock": 5,
-        "precio": 112500
       },
       {
         "id": "x20 unidades (15 CM)",
