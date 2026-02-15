@@ -1,59 +1,5 @@
 [
   {
-    "id": "P017",
-    "nombre": "Calendario 2026 personalizado ",
-    "categoria": "Personalizados",
-    "precio": 550,
-    "stock": 10,
-    "imagen": "img/calendario2026.JPG",
-    "imagenes": [],
-    "descripcion": "✨En Alt F4 Craft hacemos Calendario 2026 imantado personalizado, ideal para emprendedores que buscan sumar un producto útil, vistoso y completamente adaptado a su marca. Impreso en alta calidad y montado sobre imán resistente, perfecto para colocar en heladeras, escritorios metálicos o superficies imantadas. Personalizable con tu diseño, logo, personajes, colores o temática, convirtiéndolo en un complemento práctico para regalar, vender como merch o incluir en kits de bienvenida. \n\nProducción por cantidad.\n\n⚠️Importante:\n📝 Pedidos de papelería ingresados de jueves a miércoles (19 hs)\n👉 Se entregan el sábado siguiente ✨\nEjemplo:\n🗓️16/10 al 22/10 ➜ Entrega 25/10\n💡 ¡Organizá tus pedidos con tiempo y asegurá tu lugar en el cronograma!\n\n📦 Envíos a todo el país.",
-    "variaciones": [
-      {
-        "id": "x1 unidad",
-        "nombre": "x1 unidad",
-        "imagen": "img/pin3.jpg",
-        "stock": 5,
-        "precio": 550
-      },
-      {
-        "id": "x15 unidades",
-        "nombre": "x15 unidades",
-        "imagen": "img/pin3.jpg",
-        "stock": 5,
-        "precio": 7400
-      },
-      {
-        "id": "x30 unidades",
-        "nombre": "x30 unidades",
-        "imagen": "img/pin3.jpg",
-        "stock": 5,
-        "precio": 12500
-      },
-      {
-        "id": "x45 unidades",
-        "nombre": "x45 unidades",
-        "imagen": "img/pin3.jpg",
-        "stock": 5,
-        "precio": 17000
-      },
-      {
-        "id": "x60 unidades",
-        "nombre": "x60 unidades",
-        "imagen": "img/pin3.jpg",
-        "stock": 5,
-        "precio": 19600
-      },
-      {
-        "id": "x90 unidades",
-        "nombre": "x90 unidades",
-        "imagen": "img/pin3.jpg",
-        "stock": 5,
-        "precio": 23800
-      }
-    ]
-  },
-  {
     "id": "P001",
     "nombre": "Pin de acrilico Personalizado",
     "categoria": "Personalizados",
